@@ -1,0 +1,209 @@
+/* start nav bar */
+
+
+
+.navbar .navbar-brand{font-size: 26px; font-weight: bold; color: #888;}
+
+.navbar .navbar-brand p{margin-top: 0.8rem;}
+
+@media (max-width: 575.98px) {
+  .navbar-brand{font-size: 18px !important;}
+  .navbar-brand img{width: 50px !important; height: 45px !important;}
+}
+
+@media (max-width: 390px) {
+  .navbar-brand{font-size: 14px !important;}
+  .navbar-brand p{margin-top: 1.05rem !important;}
+}
+
+.navbar .navbar-brand span{color: #1d91bb;}
+
+.navbar .nav-link{
+    color: #eee;
+    font-weight: bold;
+    margin: 0 6px;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link
+{
+    color: #04b50a;
+}
+
+#publish-btn-nav{
+  background: #1d91bb;
+    color: #fff;
+    margin-left: 15px;
+    border-radius: 7px;
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+@media (max-width: 991.98px) {
+  #publish-btn-nav{margin-left: 5px !important; text-align: center; width: 80px;}
+}
+
+/*start overview section*/
+
+.overview, .mission, .staff{padding: 50px 0 30px;}
+
+.overview .lead, .mission .lead{font-size: 1.15rem;}
+
+/*start staff section*/
+
+.half-txt {
+  width: 60%;
+  margin: 0 auto;
+  display: inline-block;
+  line-height: 25px;
+  color: #7e7e7e;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.team-member, .team-member .team-img {
+  position: relative;
+}
+
+.team-img img{
+  height: 250px !important;
+  width: 250px;
+  border-radius: 50%;
+}
+
+.team-member {
+  overflow: hidden;
+    border: 1px solid #ccc;
+    padding: 70px 0;
+    box-shadow: 3px 3px 15px #f0f0f0;
+}
+
+.team-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  border: 15px solid rgb(29 150 211 / 0.15);
+  background-color: rgba(255, 255, 255, 0.90);
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.team-member:hover .team-hover .desk {
+  top: 35%;
+}
+.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
+  opacity: 1;
+}
+
+.team-hover .desk {
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  opacity: 0;
+  -webkit-transform: translateY(-32%);
+  -ms-transform: translateY(-32%);
+  transform: translateY(-32%);
+  -webkit-transition: all 0.3s 0.2s;
+  transition: all 0.3s 0.2s;
+  padding: 0 20px;
+}
+
+.desk p{font-size: 13.6px;}
+
+.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
+  opacity: 1;
+}
+.desk, .desk h4,.s-link a {
+  text-align: center;
+  color: #222;
+}
+.team-title {
+  position: static;
+  padding: 20px 0;
+  display: inline-block;
+  letter-spacing: 2px;
+  width: 100%;
+}
+.team-title h5 {
+  margin-bottom: 0px;
+  display: block;
+  text-transform: uppercase;
+}
+.team-title span {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #a5a5a5;
+  letter-spacing: 1px;
+}
+
+
+/*start footer section*/
+
+footer{padding: 50px 0; background: #0b0b15;}
+
+@media (max-width: 576px) {
+    footer .row > div{margin-bottom: 30px;}
+}
+
+footer h4{color: #ccc; margin-bottom: 20px;}
+
+footer ul{list-style: none; padding-left: 0;}
+
+footer li{margin: 5px 0;}
+
+footer a, footer p{color: #676767;}
+
+footer a:hover{color: #ccc; text-decoration: none;}
+
+footer img{height: 45px !important;}
+
+footer hr{background-color: #aaa;}
+
+.rights{color: #ccc; margin-top: -5px;}
+
+footer p{
+    margin-left: 100px;
+    margin-top: -5px;
+}
+
+
+
+.section-title {
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 2em;
+    margin-bottom: 30px;
+    padding-left: 80px;
+}
+
+.section-title:before,
+.section-title:after {
+  content: '';
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+}
+
+.section-title:before {
+  background-color: #555;
+  left: -.5em;
+  margin-left: -100%;
+  width: 100%;
+}
+
+.section-title:after {
+  background-color: #555;
+  left: .5em;
+  margin-right: -100%;
+  width: 100%;
+}
+
+.section-title span{font-weight: 300;}
