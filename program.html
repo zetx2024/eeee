@@ -32,29 +32,36 @@
     </head>
 
     <body>
-        <!-- Load Facebook SDK for JavaScript -->
-        <div id="fb-root"></div>
-        <script>
-            window.fbAsyncInit = function () {
-                FB.init({
-                    xfbml: true,
-                    version: 'v8.0'
-                });
-            };
+        <!-- Messenger Chat Plugin Code -->
+    <div id="fb-root"></div>
 
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s);
-                js.id = id;
-                js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
 
-        <!-- Your Chat Plugin code -->
-        <div class="fb-customerchat" attribution=setup_tool page_id="106413787796670" theme_color="#1d91bb">
-        </div>
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "115167513660646");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v18.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
 
         <!-- start nav bar  -->
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -96,13 +103,13 @@
         <div class="courses">
           <ul>
             <li>
-              <a href="research-101.html"><img src="images/research-101.jpg" alt="Fr" /></a>
+              <a href="#"><img src="images/research101.png" alt="Fr" /></a>
             </li>
             <li>
-              <a href="courses2.html"><img src="resources/courses/Courses_template.png" alt="mark" /></a>
+              <a href="#"><img src="images/computational.png" alt="mark" /></a>
             </li>
             <li>
-              <a href="courses2.html"><img src="resources/courses/Courses_template.png" alt="" /></a>
+              <a href="#"><img src="images/machine.png" alt="" /></a>
             </li>
           </ul>
         </div>
@@ -125,7 +132,7 @@
                          
                         </div>
                         <div class="social text-center">
-                            <a href="https://www.facebook.com/YouthReseacrhJournall/"><i class="fab fa-facebook-square"></i> Facebook</a>
+                            <a href="https://www.facebook.com/yrjournal/"><i class="fab fa-facebook-square"></i> Facebook</a>
                   <a href="https://www.instagram.com/yresearchjournal/"><i class="fab fa-instagram"></i> Instagram</a>
                   <a href="https://www.linkedin.com/company/yrj/"><i class="fab fa-linkedin"></i> Linkedin</a>
                         </div>
