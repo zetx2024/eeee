@@ -1,0 +1,53 @@
+{
+        "name": "Youth Research Journal",
+        "author": "Md Sanaul Haque Shanto",
+        "short_name": "YRJ",
+        "description": "An initiative by Youth Research Journal is the first Journal published by high school students, for high school students.",
+        "start_url": "/index.html",
+        "background_color": "#089608",
+        "theme_color": "#089608",
+        "display": "standalone",
+        "icons":[
+        {
+
+            "src": "fevicon/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+                {
+                "src": "fevicon/fav144x144.png",
+
+            "sizes": "144x144",
+
+            "type": "image/png"
+                       }, 
+        {
+
+            "src": "fevicon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+        ],
+    "manifest_version": 1,
+    "type": "WebApp",
+    "meta": {
+        "name": "Youth Research Journal",
+        "author": "Md Sanaul Haque Shanto",
+        "short_name": "YRJ",
+        "short_url": ".",
+        "background_color": "#089608",
+        "theme_color": "##089608",
+        "display": "standalone",
+        "version": "1.0.0.01",
+        "minimum-overwolf-version": "yrjournal.org",
+        "minimum-gep-version": "yrjournal.org",
+        "description": "An initiative by Youth Research Journal is the first Journal published by high school students, for high school students.",
+        "dock_button_title": "yrjournal.org",
+        "launcher_icon": "fevicon/favicon.ico",
+        "splash_image": "fevicon/logo.png",
+        "window_icon": "fevicon/logo.png"
+        
+    },
+    "permissions": ["Web"]
+    
+}
