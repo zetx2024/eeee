@@ -4,24 +4,44 @@
 
 <url>
   <loc>https://www.yrjournal.com/</loc>
-  <lastmod>2023-09-23T17:01:57+00:00</lastmod>
+  <lastmod>2023-09-28T17:01:57+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.yrjournal.com/program.html</loc>
-  <lastmod>2023-09-23T17:01:57+00:00</lastmod>
+  <lastmod>2023-09-28T17:01:57+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.yrjournal.com/publish.html</loc>
-  <lastmod>2023-09-23T17:01:57+00:00</lastmod>
+  <lastmod>2023-09-28T17:01:57+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.yrjournal.com/issues.html</loc>
-  <lastmod>2023-09-23T17:01:57+00:00</lastmod>
+  <loc>https://www.yrjournal.com/research-101.html</loc>
+  <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.yrjournal.com/computational-biology.html</loc>
+  <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.yrjournal.com/machine-learning.html</loc>
+  <lastmod>2023-09-28T17:01:57+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
+<url>
+  <loc>https://www.yrjournal.com/issues.html</loc>
+  <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.yrjournal.com/contact.html</loc>
+  <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 
 </urlset>
