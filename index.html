@@ -9,6 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/counter.css">
 
 
 <link rel="icon" href="fevicon/favicon.ico"/>
@@ -441,7 +442,7 @@ $(document).ready(function() {
           </div>
         </nav>
       <br>
-<marquee>We are accepting our Self-Paced Program <text class="cir-ripple">application,</text> <a href="https://forms.gle/zQTvuFXaBxsfM6bt7"> Plagiarism Check</a>, and paper submission.</marquee>
+<marquee>We are accepting our <a href="https://yrjournal.org/rp1to1.html">1-1 Research Program</a> ,<a href="https://yrjournal.org/p1to1.html">1-1 USA College Profile Building Mentorship Program</a>, Self-Paced Program <text class="cir-ripple">application,</text> <a href="https://forms.gle/zQTvuFXaBxsfM6bt7"> Plagiarism Check</a>, and paper submission.</marquee>
       <br>
         <section class="feat-issues">
           <div class="circle"></div>
@@ -475,6 +476,60 @@ $(document).ready(function() {
             <span>Youth</span> for the <span>Youth</span>.</p>
           </div>
         </section>
+
+      <!-- End quote section -->
+
+        <!-- start Counter section -->
+        <div id="counter">
+
+            <div class="item">
+               <h1 class="count" data-number="2" ></h1>
+               <h3 class="text">Research Programs Hosted</h3>
+            </div>
+            <div class="item">
+               <h1 class="count" data-number="60" ></h1>
+               <h3 class="text">Total Students</h3>
+            </div>
+            <div class="item">
+               <h1 class="count" data-number="53" ></h1>
+               <h3 class="text">Proposals</h3>
+            </div>
+            <div class="item">
+               <h1 class="count" data-number="37" ></h1>
+               <h3 class="text">Full Papers</h3>
+            </div>
+          
+         </div>
+
+          <script type="text/javascript">
+            let count = document.querySelectorAll(".count")
+            let arr = Array.from(count)
+            arr.map(function(item){
+            let startnumber = 0
+
+            function counterup(){
+            startnumber++
+            item.innerHTML= startnumber
+   
+            if(startnumber == item.dataset.number){
+                clearInterval(stop)
+               }
+           }
+
+          let stop =setInterval(function(){
+               counterup()
+               },50)
+
+               })
+          </script>
+
+          <br>
+          <br>
+
+        <!-- End Counter section -->
+
+
+      
 
         <!-- start features section -->
         <section class="feats">
