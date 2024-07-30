@@ -114,7 +114,7 @@ $(function () {
 
   // ===============================================================
 
-  let quote = "The first Bangladeshi journal run by the <span>youth</span> for the <span>youth</span>.";
+  let quote = "The first yout journal run by the <span>youth</span> for the <span>youth</span>.";
 
   let i = 0;
   const myInterval = setInterval(() => {
@@ -133,3 +133,12 @@ $(function () {
     }
   }, 75);
 });
+
+// START AD | Sanual Haque
+const popupContainer = document.querySelector('.popup-container');
+const closeBtn = document.querySelector('.close-btn');
+    popupContainer.classList.add('active');
+closeBtn.onclick = () => {
+    popupContainer.classList.remove('active');
+}
+// END AD 
