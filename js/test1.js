@@ -160,7 +160,7 @@ function slide(whichSide, personNumber) {
 }
 
 function setNextCardLeft() {
-	if (currentPerson === 3) {
+	if (currentPerson === 7) {
 		currentPerson = 0;
 		slide("left", currentPerson);
 	} else {
@@ -172,7 +172,7 @@ function setNextCardLeft() {
 
 function setNextCardRight() {
 	if (currentPerson === 0) {
-		currentPerson = 3;
+		currentPerson = 7;
 		slide("right", currentPerson);
 	} else {
 		currentPerson--;
