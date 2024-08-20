@@ -14,7 +14,7 @@ let isChickenVisible;
 let people = [
 	{
 		photo:
-			'url("https://yrjournal.org/testimonialimg/naira.PNG)',
+			"url('https://yrjournal.org/testimonialimg/naira.PNG')",
 		name: "Syeda Naira Noor Afsar",
 		rate: "★★★★★",
 		profession: "Birshreshtha Munshi Abdur Rouf Public College",
