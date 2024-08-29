@@ -26,7 +26,7 @@ let people = [
 		photo:
 			"url('https://yrjournal.org/testimonialimg/mur.jpg')",
 		name: "Anusheh Mur",
-		rate: "★★★★★",
+		rate: "★★★★",
 		profession: "Dinajpur Laboratory school and college",
 		description:
 			"The program overall was excellent. I believe that this is a great opportunity for the young generation to gain access to different fields of research."
@@ -36,7 +36,7 @@ let people = [
 		photo:
 			"url('https://yrjournal.org/testimonialimg/hamzha.jpg')",
 		name: "Aosaf Mohammad Hamzha ",
-		rate: "★★★★☆",
+		rate: "★★★★",
 		profession: "Presidency International School",
 		description:
 			"I was a very great experience and I would like to do more research programs in the future."
@@ -66,7 +66,7 @@ let people = [
 		photo:
 			"url('https://yrjournal.org/testimonialimg/taief.jpg')",
 		name: "Tanvin Hasan Taief",
-		rate: "★★★★☆",
+		rate: "★★★★",
 		profession: "Dhaka City College",
 		description:
 			"This research program helped me a lot to understand the fundamental of research and organizing in a effective way. It encouraged me to dive into the sea of knowledge. It helped me to find some particular problem's solving method very easy way."
@@ -76,7 +76,7 @@ let people = [
 		photo:
 			"url('https://yrjournal.org/testimonialimg/snaziba.jpg')",
 		name: "Naziba Sayem",
-		rate: "★★★★☆",
+		rate: "★★★★",
 		profession: "Mastermind English Medium School ",
 		description:
 			"It was a good program with amazing mentorship. What I appreciated most was Shanto bhaiya's willingness to talk to groups one-on-one so that specific problems can be discussed."
@@ -85,10 +85,82 @@ let people = [
 		photo:
 			"url('https://yrjournal.org/testimonialimg/anitas.jpg')",
 		name: "Anita Sheikh",
-		rate: "★★★★☆",
+		rate: "★★★★",
 		profession: "Private Student",
 		description:
 			"Well it was a really great experience. Most important thing is i got to learn something new and really useful."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/testimonialimg/adira.jpg')",
+		name: "Adira Safwan",
+		rate: "★★★★",
+		profession: "Sunbeams",
+		description:"I barely knew much about research before applying. YRJ allowed me to learn details and the inner workings of how one can succesfully conduct that research. It was an amazing experience! Sanaul bhaiya was very helpful and informative and overall a great mentor."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/testimonialimg/rayyan.JPG')",
+		name: "Farhan Akil Rayyan",
+		rate: "★★★★★",
+		profession: "Academia",
+		description:"Overall it's been amazing, learnt a lot of new stuff."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/testimonialimg/rrahee.jpg')",
+		name: "Rahiqul Makhtum Rahee",
+		rate: "★★★★",
+		profession: "Rajuk Uttara Model College",
+		description:"It was a nice program . Although due to the harsh situation of the country I was not able to join in a few classes , hopefully I'd get help from brother in future."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/testimonialimg/aurchi.jpg')",
+		name: "Nabila Hasan",
+		rate: "★★★★★",
+		profession: "Rajuk Uttara Model College ",
+		description:"This program helped me a lot. I have had a lot of problems regarding research. Joining this program,I realized that I knew nothing. But I have learned alot which would help me with my future profession."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/testimonialimg/fissz.jpg')",
+		name: "Sadman Rahman Fiham",
+		rate: "★★★★★",
+		profession: "Private Candidate",
+		description:"It has been a great experience learning about researching. It allowed me to efficiently outsource my material and tailor information precisely to my criteria which I was not able to. It taught me numerous tools about research. All of these will allow me to participate in writing research paper in the future with great hope of achieving a good scholarship via what I have learned."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/testimonialimg/kazad.jpg')",
+		name: "Kasfia Azad Orpa",
+		rate: "★★★★",
+		profession: "Holy Cross College",
+		description:"Overall the program was helpful. And our mentor was so friendly and always tried to give his best. He used to ask everytime if any of us dealing any problems with our research. He helped us in selecting our research proposal as well as to complete the whole research paper."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/testimonialimg/raphia.jpeg')",
+		name: "Raphia Naushin Hassan",
+		rate: "★★★★★",
+		profession: "HEED International School",
+		description:"Before applying to the YRJ program, I thoroughly researched its offerings, which only fueled my excitement about joining. However, since applying and gaining further insights, I’ve been even more impressed by what YRJ truly has to offer."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/testimonialimg/suha.jpg')",
+		name: "Suha Ahsan",
+		rate: "★★★★",
+		profession: "Mastermind",
+		description:"Very productive and loved to be presented with the opportunity!"
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/testimonialimg/zarif.jpg')",
+		name: "Muztaba Hossain Zarif",
+		rate: "★★★",
+		profession: "International Hope School Bangladesh",
+		description:"The instructor obviously knows a lot about research and tons of respect for him. But it was very hard to absorb the lessons from him due to the disturbance of other students, but the resources he has compiled and made from scratch are world class and it is enough for any new researcher to finish their first project , so a heartfelt thanks to sanaul bhaiya for the continued resources support."
 	}
 
 
@@ -104,7 +176,7 @@ let currentPerson = 0;
 //Select the side where you want to slide
 function slide(whichSide, personNumber) {
 	let reviewWrapWidth = reviewWrap.offsetWidth + "px";
-	let descriptionHeight = description.offsetHeight + "px";
+	let descriptionHeight = description.style.height = "100%";
 	//(+ or -)
 	let side1symbol = whichSide === "left" ? "" : "-";
 	let side2symbol = whichSide === "left" ? "-" : "";
@@ -160,7 +232,7 @@ function slide(whichSide, personNumber) {
 }
 
 function setNextCardLeft() {
-	if (currentPerson === 7) {
+	if (currentPerson === 16) {
 		currentPerson = 0;
 		slide("left", currentPerson);
 	} else {
@@ -172,7 +244,7 @@ function setNextCardLeft() {
 
 function setNextCardRight() {
 	if (currentPerson === 0) {
-		currentPerson = 7;
+		currentPerson = 16;
 		slide("right", currentPerson);
 	} else {
 		currentPerson--;
