@@ -3,56 +3,57 @@
 
 
     <url>
-      <loc>https://yrjournal.com/</loc>
-      <lastmod>2024-03-23T17:01:57+00:00</lastmod>
+      <loc>https://yrjournal.org</loc>
+      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.00</priority>
     </url>
     <url>
-      <loc>https://apply.yrjournal.com</loc>
-      <lastmod>2024-03-23T17:01:57+00:00</lastmod>
+      <loc>https://apply.yrjournal.org</loc>
+      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.00</priority>
     </url>
     <url>
-      <loc>https://yrjournal.com/program.html</loc>
-      <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+      <loc>https://yrjournal.org/program.html</loc>
+      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
     <url>
-      <loc>https://yrjournal.com/publish.html</loc>
-      <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+      <loc>https://yrjournal.org/publish.html</loc>
+      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
     <url>
-      <loc>https://yrjournal.com/research-101.html</loc>
-      <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+      <loc>https://grad.yrjournal.org</loc>
+      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
     <url>
-      <loc>https://yrjournal.com/computational-biology.html</loc>
-      <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+      <loc>https://yrjournal.org/computational-biology.html</loc>
+      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
     <url>
-      <loc>https://yrjournal.com/machine-learning.html</loc>
-      <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+      <loc>https://yrjournal.org/machine-learning.html</loc>
+      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
+
     <url>
-      <loc>https://yrjournal.com/issues.html</loc>
-      <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+      <loc>https://yrjournal.org/contact.html</loc>
+      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
-    <url>
-      <loc>https://yrjournal.com/contact.html</loc>
-      <lastmod>2023-09-28T17:01:57+00:00</lastmod>
+        <url>
+      <loc>https://yrjournal.org/issues.html</loc>
+      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
