@@ -1,5 +1,5 @@
 // URL of the PDF you want to view
-const pdfUrl = 'https://yrjournal.org/md-log.pdf';
+const pdfUrl = 'https://yrjournal.org/awardissue/srp24/gold/naziba_jhiri.pdf';
 
 // Initialize PDF.js
 const pdfjsLib = window['pdfjs-dist/build/pdf'];
