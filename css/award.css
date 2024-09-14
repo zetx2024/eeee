@@ -40,7 +40,8 @@
         .badge-container {
             display: flex;
             justify-content: center;
-            margin-top: 0px;
+         position: relative;
+            top: -5px;
         }
 
         .badge-item {
