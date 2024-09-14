@@ -77,7 +77,7 @@
         }
 
         // Fetch student and medal data, then create profile items
-        fetch('data.json')
+        fetch('../awardsdata.json')
             .then(response => response.json())
             .then(data => createProfileItems(data))
             .catch(error => console.error('Error loading data:', error));
