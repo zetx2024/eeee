@@ -1,31 +1,49 @@
 {
   "students": [
     {
-      "name": "Alice Johnson",
-      "institution": "University A",
+      "name": "Naziba Sayem",
+      "institution": "Mastermind English Medium School",
       "year": "2024",
-      "program": "Computer Science",
+      "program": "Summer Research Program 2024",
+      "medal": "gold",
+      "image": "https://yrjournal.org/testimonialimg/snaziba.jpg",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/gold/"
+    },
+    {
+      "name": "Nazli Manhoor Jhiri",
+      "institution": "BAF Shaheen English Medium College",
+      "year": "2024",
+      "program": "Summer Research Program 2024",
       "medal": "gold",
       "image": "https://via.placeholder.com/100",
-      "profileLink": "https://example.com/alice-johnson"
+      "profileLink": "https://yrjournal.org/awardissue/srp24/gold/"
     },
     {
-      "name": "Bob Smith",
-      "institution": "University B",
-      "year": "2023",
-      "program": "Mathematics",
-      "medal": "silver",
-      "image": "https://via.placeholder.com/100",
-      "profileLink": "https://example.com/bob-smith"
-    },
-    {
-      "name": "Charlie Brown",
-      "institution": "University C",
-      "year": "2022",
-      "program": "Physics",
+      "name": "Raifa Kabir",
+      "institution": "Dhanmondi Tutorial , Dhaka",
+      "year": "2024",
+      "program": "Summer Research Program 2024",
       "medal": "bronze",
       "image": "https://via.placeholder.com/100",
       "profileLink": "https://example.com/charlie-brown"
+    },
+    {
+      "name": "Md. Azmain Hasan",
+      "institution": "Notre Dame College , Dhaka",
+      "year": "2024",
+      "program": "Summer Research Program 2024",
+      "medal": "bronze",
+      "image": "https://via.placeholder.com/100",
+      "profileLink": "https://example.com/charlie-brown"
+    },
+    {
+      "name": "Farhan Akil",
+      "institution": "Academia, Gulshan, Dhaka",
+      "year": "2024",
+      "program": "Summer Research Program 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/rayyan.JPG",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/gold/"
     }
   ],
   "medals": {
