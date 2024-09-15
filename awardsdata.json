@@ -23,27 +23,108 @@
       "institution": "Dhanmondi Tutorial , Dhaka",
       "year": "2024",
       "program": "SRP 2024",
-      "medal": "bronze",
+      "medal": "silver",
       "image": "https://yrjournal.org/testimonialimg/raifak.jpeg",
-      "profileLink": "https://example.com/charlie-brown"
+      "profileLink": "https://yrjournal.org/awardissue/srp24/silver/"
     },
     {
       "name": "Md. Azmain Hasan",
       "institution": "Notre Dame College , Dhaka",
       "year": "2024",
       "program": "SRP 2024",
-      "medal": "bronze",
+      "medal": "silver",
       "image": "https://yrjournal.org/testimonialimg/azmainh.jpg",
-      "profileLink": "https://example.com/charlie-brown"
+      "profileLink": "https://yrjournal.org/awardissue/srp24/silver/"
     },
     {
       "name": "Farhan Akil",
       "institution": "Academia, Gulshan, Dhaka",
       "year": "2024",
       "program": "SRP 2024",
-      "medal": "bronze",
+      "medal": "silver",
       "image": "https://yrjournal.org/testimonialimg/rayyan.JPG",
-      "profileLink": "https://yrjournal.org/awardissue/srp24/gold/"
+      "profileLink": "https://yrjournal.org/awardissue/srp24/silver/"
+    },
+    {
+      "name": "Mahajabin Anuja",
+      "institution": "Islamic International School And College, Dhaka",
+      "year": "2024",
+      "program": "SRP 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/manuja.jpeg",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/bronze/"
+    },
+    {
+      "name": "Kashfia Nehrin",
+      "institution": "Islamic International School And College, Dhaka",
+      "year": "2024",
+      "program": "SRP 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/knehrin.jpeg",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/bronze/"
+    },
+    {
+      "name": "Mahajabin Binta Azad Orni",
+      "institution": "Bangladesh International School and College",
+      "year": "2024",
+      "program": "SRP 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/mahajabina.jpg",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/bronze/"
+    },
+    {
+      "name": "Tasin Masud Fahim",
+      "institution": "Notre Dame College, Dhaka",
+      "year": "2024",
+      "program": "SRP 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/tmasud.jpg",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/bronze/index2"
+    },
+    {
+      "name": "Tanvin Hasan Taief",
+      "institution": "Dhaka City College",
+      "year": "2024",
+      "program": "SRP 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/taief.jpg",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/bronze/index3"
+    },
+    {
+      "name": "Raiyan Ahmed Sajid",
+      "institution": "Dhaka City College",
+      "year": "2024",
+      "program": "SRP 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/images/Logo.PNG",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/bronze/index3"
+    },
+    {
+      "name": "Ahnaf Mozumder",
+      "institution": "HURDCO International School",
+      "year": "2024",
+      "program": "SRP 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/ahnafm.jpg",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/bronze/index4"
+    },
+    {
+      "name": "Safwat Hossain",
+      "institution": "HURDCO International School",
+      "year": "2024",
+      "program": "SRP 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/mdsafwat.jpg",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/bronze/index4"
+    },
+    {
+      "name": "Kasfia Azad",
+      "institution": "Holy Cross College",
+      "year": "2024",
+      "program": "SRP 2024",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/kazad.jpg",
+      "profileLink": "https://yrjournal.org/awardissue/srp24/bronze/index4"
     }
   ],
   "medals": {
