@@ -1,10 +1,6 @@
 User-agent: *
 Disallow: /issues
-Disallow: /awards
 Disallow: /awardissue
-Disallow: /program
-Disallow: /contact
-Disallow: /publish
 
 Sitemap: https://yrjournal.org/sitemap.xml
 
