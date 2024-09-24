@@ -94,6 +94,44 @@
       gtag('config', 'G-6P4BYKQ77T');
     </script>
 
+    <style type="text/css">
+        
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-card {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.contact-card:hover {
+    transform: scale(1.02);
+}
+
+.contact-card p {
+    margin: 5px 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    body {
+        margin: 10px;
+    }
+}
+
+    </style>
+
+
+        
     </head>
 
     <body>
@@ -165,7 +203,7 @@
 
         <section>
                     <div class="container">
-                        <p>Coming Soon or mail at info@yrjournal.org</p>
+                        <div id="contact-list" class="contact-list"></div>
                     </div>
                 </section>
 
@@ -226,5 +264,48 @@
         <script src="../js/plugins.js"></script>
           <script src="js/script_CP.js"></script>
     <script src="js/script.js"></script>
+
+            <script>
+        const contacts = [
+    {
+        "name": "Sanaul Haque (Chief Patron)",
+        "position": "Director",
+        "subject": "Research Lead",
+        "institution": "University of Wisconsin Madison",
+        "address": "Dhaka, Bangladesh",
+        "email": "shanto@yrjournal.org",
+        "phone": "+8801766009306"
+    },
+    {
+        "name": "Azmain Yakin Srizon (Editor-in-chief)",
+        "position": "Managing Director",
+        "subject": "Computer Science",
+        "institution": "Rajshahi University of Engineering and Technology",
+        "address": "Kazla Rajshahi 6205, Bangladesh",
+        "email": "azmainsrizon@cse.ruet.ac.bd",
+        "phone": ""
+    }
+];
+
+const contactList = document.getElementById('contact-list');
+
+contacts.forEach(contact => {
+    const contactCard = document.createElement('div');
+    contactCard.className = 'contact-card';
+
+    contactCard.innerHTML = `
+        <p class="bold">${contact.name || ''}</p>
+        <p>${contact.position || ''}</p>
+        <p>${contact.subject || ''}</p>
+        <p>${contact.institution || ''}</p>
+        <p>${contact.address || ''}</p>
+        <p>${contact.email || ''}</p>
+        <p>${contact.phone || ''}</p>
+    `;
+
+    contactList.appendChild(contactCard);
+});
+
+    </script>
     </body>
 </html>
