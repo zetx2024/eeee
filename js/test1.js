@@ -305,8 +305,8 @@ function slide(whichSide, personNumber) {
 }
 
 function setNextCardLeft() {
-	if (currentPerson === 0) {
-		currentPerson = 24;
+	if (currentPerson === 24) {
+		currentPerson = 0;
 		slide("left", currentPerson);
 	} else {
 		currentPerson++;
@@ -316,8 +316,8 @@ function setNextCardLeft() {
 }
 
 function setNextCardRight() {
-	if (currentPerson === 24) {
-		currentPerson = 0;
+	if (currentPerson === 0) {
+		currentPerson = 24;
 		slide("right", currentPerson);
 	} else {
 		currentPerson--;
