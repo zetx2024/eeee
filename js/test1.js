@@ -14,6 +14,79 @@ let isChickenVisible;
 let people = [
 	{
 		photo:
+			"url('https://yrjournal.org/awardimg/wrp24/shafi.jpg')",
+		name: "Shafi Bin Sultan",
+		rate: "★★★★★",
+		profession: "St.Joseph Higher Secondary School & College ",
+		description:
+			"The YRJ Winter Research Program is an exceptionally well-organized and impactful event. From the seamless registration process to the carefully curated sessions, every aspect reflects meticulous planning and attention to detail. The program's structure fosters collaboration and learning, offering participants a platform to engage deeply with their chosen research fields. The organizers' dedication to creating an intellectually stimulating environment is evident in the expert mentorship, timely communication, and diverse research opportunities provided. The event's emphasis on real-world applicability ensures that participants leave with theoretical knowledge and practical insights that contribute to their academic and professional growth."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/awardimg/wrp24/syeda.jpg')",
+		name: "Syeda Shayori Jamil",
+		rate: "★★★★★",
+		profession: "Academia",
+		description:
+			"The program starts from the very bottom and seemingly climb the top which doesn't feel very rush. This allows beginner researchers to learn basics of research effectively. My experience has been very fruitful in YRJ."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/awardimg/wrp24/radhwa.jpeg')",
+		name: "Radhwa Nouf",
+		rate: "★★★★★",
+		profession: "Privates",
+		description:
+			"This program is a prestigious initiative aimed at fostering research expertise among students. Over the course of around 40 days, participants engage in hands-on research, guided by leading experts in the field."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/awardimg/wrp24/nabiha.jpeg')",
+		name: "Safwan Nabiha",
+		rate: "★★★★★",
+		profession: "Maple Leaf International School ",
+		description:
+			"The program was outstanding, offering excellent mentorship. The classes were highly informative and immensely helpful. It is an ideal platform for anyone aspiring to learn more about research."
+	},
+
+	{
+		photo:
+			"url('https://yrjournal.org/awardimg/wrp24/reeda.jpeg')",
+		name: "Reeda Amanee",
+		rate: "★★★★",
+		profession: "Viqarunnisa Noon School & College",
+		description:
+			"I think everyone did an amazing job. The effort from all involved really stood out, and it made the program a success. Everyone was approachable and willing to help whenever needed, which made things run smoothly. I’d say the only thing to keep in mind for next time is maybe having a little more time for preparations, but overall, it was a great experience, and I’m grateful to be part of it!"
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/awardimg/wrp24/sabik.jpg')",
+		name: "Sabik Bin Sultan",
+		rate: "★★★★★",
+		profession: "South Point School & College",
+		description:
+			"An incredible experience with the winter research program organized by YRJ-Youth Research Journal! The classes are informative, and the mentors are knowledgeable and approachable. If you're looking for a program that offers great learning opportunities and helps you grow as a researcher, I highly recommend it. Huge thanks to the YRJ team for such an amazing experience!"
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/awardimg/wrp24/nosrat.jpg')",
+		name: "Nosrat Jahan",
+		rate: "★★★★★",
+		profession: "Anandaniketan School",
+		description:
+			"It was great, the material provided was really helpful. Well organized and always good to learn something that isn't commonly taught."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/awardimg/wrp24/nosrat.jpg')",
+		name: "Sahla Alam",
+		rate: "★★★★",
+		profession: "Maple Leaf International School",
+		description:
+			"This research program has been extremely educational and has helped us acquire new skills. The mentor is extremely patient and answers all of our questions with the utmost competence, making sure we are well informed about every step of the process. "
+	},
+	{
+		photo:
 			"url('https://yrjournal.org/testimonialimg/naira.PNG')",
 		name: "Syeda Naira Noor Afsar",
 		rate: "★★★★★",
@@ -232,7 +305,7 @@ function slide(whichSide, personNumber) {
 }
 
 function setNextCardLeft() {
-	if (currentPerson === 16) {
+	if (currentPerson === 25) {
 		currentPerson = 0;
 		slide("left", currentPerson);
 	} else {
@@ -244,7 +317,7 @@ function setNextCardLeft() {
 
 function setNextCardRight() {
 	if (currentPerson === 0) {
-		currentPerson = 16;
+		currentPerson = 25;
 		slide("right", currentPerson);
 	} else {
 		currentPerson--;
