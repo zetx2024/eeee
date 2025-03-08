@@ -78,7 +78,7 @@ let people = [
 	},
 	{
 		photo:
-			"url('https://yrjournal.org/awardimg/wrp24/nosrat.jpg')",
+			"url('https://yrjournal.org/awardimg/wrp24/sahla.jpg')",
 		name: "Sahla Alam",
 		rate: "★★★★",
 		profession: "Maple Leaf International School",
@@ -305,8 +305,8 @@ function slide(whichSide, personNumber) {
 }
 
 function setNextCardLeft() {
-	if (currentPerson === 25) {
-		currentPerson = 0;
+	if (currentPerson === 0) {
+		currentPerson = 24;
 		slide("left", currentPerson);
 	} else {
 		currentPerson++;
@@ -316,8 +316,8 @@ function setNextCardLeft() {
 }
 
 function setNextCardRight() {
-	if (currentPerson === 0) {
-		currentPerson = 25;
+	if (currentPerson === 24) {
+		currentPerson = 0;
 		slide("right", currentPerson);
 	} else {
 		currentPerson--;
