@@ -326,8 +326,8 @@ function setNextCardRight() {
 	slide("right", currentPerson);
 }
 
-leftArrow.addEventListener("click", setNextCardLeft);
-rightArrow.addEventListener("click", setNextCardRight);
+leftArrow.addEventListener("click", setNextCardRight);
+rightArrow.addEventListener("click", setNextCardLeft);
 
 surpriseMeBtn.addEventListener("click", () => {
 	if (chicken.style.opacity === "0") {
