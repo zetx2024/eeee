@@ -4,55 +4,43 @@
 
     <url>
       <loc>https://yrjournal.org</loc>
-      <lastmod>2024-12-30T17:01:57+00:00</lastmod>
+      <lastmod>2025-03-10T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.00</priority>
     </url>
     <url>
       <loc>https://apply.yrjournal.org</loc>
-      <lastmod>2024-12-31T17:01:57+00:00</lastmod>
+      <lastmod>2025-03-10T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.00</priority>
     </url>
     <url>
-      <loc>https://yrjournal.org/program.html</loc>
-      <lastmod>2024-12-31T17:01:57+00:00</lastmod>
+      <loc>https://yrjournal.org/awards</loc>
+      <lastmod>2025-03-10T17:01:57+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>1.00</priority>
+    </url>
+    <url>
+      <loc>https://yrjournal.org/program</loc>
+      <lastmod>2025-03-10T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
     <url>
-      <loc>https://yrjournal.org/publish.html</loc>
+      <loc>https://yrjournal.org/publish</loc>
       <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
+    
     <url>
-      <loc>https://grad.yrjournal.org</loc>
-      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.80</priority>
-    </url>
-    <url>
-      <loc>https://yrjournal.org/computational-biology.html</loc>
-      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.80</priority>
-    </url>
-    <url>
-      <loc>https://yrjournal.org/machine-learning.html</loc>
-      <lastmod>2024-09-11T17:01:57+00:00</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.80</priority>
-    </url>
-
-    <url>
-      <loc>https://yrjournal.org/contact.html</loc>
+      <loc>https://yrjournal.org/contact</loc>
       <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
         <url>
-      <loc>https://yrjournal.org/issues.html</loc>
+      <loc>https://yrjournal.org/issues</loc>
       <lastmod>2024-09-11T17:01:57+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
