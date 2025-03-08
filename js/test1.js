@@ -23,21 +23,21 @@ let people = [
 	},
 	{
 		photo:
-			"url('https://yrjournal.org/awardimg/wrp24/syeda.jpg')",
-		name: "Syeda Shayori Jamil",
-		rate: "★★★★★",
-		profession: "Academia",
-		description:
-			"The program starts from the very bottom and seemingly climb the top which doesn't feel very rush. This allows beginner researchers to learn basics of research effectively. My experience has been very fruitful in YRJ."
-	},
-	{
-		photo:
 			"url('https://yrjournal.org/awardimg/wrp24/radhwa.jpeg')",
 		name: "Radhwa Nouf",
 		rate: "★★★★★",
 		profession: "Privates",
 		description:
 			"This program is a prestigious initiative aimed at fostering research expertise among students. Over the course of around 40 days, participants engage in hands-on research, guided by leading experts in the field."
+	},
+	{
+		photo:
+			"url('https://yrjournal.org/awardimg/wrp24/syeda.jpg')",
+		name: "Syeda Shayori Jamil",
+		rate: "★★★★★",
+		profession: "Academia",
+		description:
+			"The program starts from the very bottom and seemingly climb the top which doesn't feel very rush. This allows beginner researchers to learn basics of research effectively. My experience has been very fruitful in YRJ."
 	},
 	{
 		photo:
