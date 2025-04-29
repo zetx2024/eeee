@@ -12,6 +12,248 @@ const chicken = document.querySelector(".chicken");
 let isChickenVisible;
 
 let people = [
+	  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/MorsalinaC.jpg')",
+      name: "Morsalina Chowdhory Madhabi",
+      rate: "★★★★",
+      profession: "Liceo Scientifico Francesco D’assisi",
+      grade: "Class 11",
+      programs: "Spring Research Program 2025",
+      country: "Italy",
+      description:
+        "It was such pleasure to work with you all. But I wish we had more time to complete the assignments as most of us are beginners. It would have been much better and beginner friendly in that way. But the overall experience was so good and the people organizing it were so friendly and nice. I will say these people are so dedicated individuals."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/LRupkotha.jpeg')",
+      name: "Lamisa Sakhawat",
+      rate: "★★★★",
+      profession: "Viqarunnisa Noon School and College",
+      grade: "Class 12",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "This research program was incredibly resourceful. It provided valuable materials and more importantly helped me build skills that will be highly beneficial in my future endeavours. Highly recommend to beginners."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/MridulHasan.jpeg')",
+      name: "MD Mridul Hasan",
+      rate: "★★★★",
+      profession: "Dhaka College",
+      grade: "Gap year",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "Jumped into research with zero experience—and YRJ made it feel possible. From the basics to building something real, every step was guided and supportive. Grateful for the learning, the people, and the journey."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/NaimMolla.JPG')",
+      name: "Md. Naim Molla",
+      rate: "★★★★",
+      profession: "Notre Dame College, Dhaka",
+      grade: "Class 12",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "This is my 2nd time taking part in a program of YRJ and from my little experience, I can affirm their glaring future accelerated by the tireless toils of a small group of individuals. I hope this concept that high school students can also conduct research, will bring about an immeasurable revolution in our country, specially among the lower grade student bodies."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/AhnafAhmed.jpeg')",
+      name: "Ahnaf Ahmed",
+      rate: "★★★★",
+      profession: "Academia",
+      grade: "A Level",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "This program has instilled within me a newfound thirst for knowledge and provided me with the tools necessary to satiate my curiosity. The mentors and instructors are extremely knowledgeable and experienced and have helped me whenever possible throughout the entirety of the program. Overall, I can confidently say that I have benefitted and become an improved individual after enrolling in this program."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/LaaibahSarrinah.jpeg')",
+      name: "Laaibah Sarrinah Islam",
+      rate: "★★★★",
+      profession: "Presidency International School",
+      grade: "Class 8",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "For me, this educational program was a whole new experience.   I learnt a good bit of new information while taking this class, and I thought the teacher's approach to teaching was really helpful.   I hope to have the opportunity to work on more research projects like this in the future."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/SupritiBarua.jpg')",
+      name: "Supriti Barua",
+      rate: "★★★★★",
+      profession: "Chittagong Cantonment Public College",
+      grade: "Class 11",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "Taking part in this research program has been a wonderful experience for me. I have learned so many things like how to think critically and discover topics in depth. Although I was new to research, this opportunity helped me understand the basics of writing research paper and improved my confidence. Overall, it was a meaningful and enriching experience."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/TasfiahKhan.jpg')",
+      name: "Tasfiah Khan",
+      rate: "★★★★★",
+      profession: "Birshreshtha Noor Mohammad Public College",
+      grade: "Class 10",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "It is an extraordinarily well organized program that helps students learn about the in depths of research in a really engaging manner. The program's project based teaching method not only helps learning theoretical components of research effectively but also helps in learning how to implement them . Overall , a very recommended program."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/AfifRahaman.jpg')",
+      name: "Muhammad Afif Rahaman Tasnim",
+      rate: "★★★★",
+      profession: "Dhaka College",
+      grade: "Class 11",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "I think if people take this program seriously and try to learn from it, they will definitely get the most out of it. Beginner researchers will get to be familiar with research, while experienced researchers can improve their skills drastically."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/FaribtaZaman.jpeg')",
+      name: "Faribta Zaman",
+      rate: "★★★★",
+      profession: "Birshreshtha Noor Mohammad Public College",
+      grade: "Class 12",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "This research program offered an introductory overview of the field, with access to relevant resources and opportunities to develop foundational skills. The experience was informative and served as a practical starting point for those beginning to engage with academic work or consider future research goals."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/Ramisa.jpg')",
+      name: "Amaara Zahid Ramisa",
+      rate: "★★★★★",
+      profession: "Milestone School and College",
+      grade: "Class 8",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "Being part of the YRJ Spring Research Program was honestly such a refreshing experience. It didn’t feel like just another academic program—it felt like a space where curiosity was actually valued. The sessions were engaging, and the mentors made it easy to ask questions and explore new ideas without feeling overwhelmed. What I appreciated most was how supportive and down-to-earth everything felt. I didn’t just learn—I grew. If you're someone who loves learning and wants to connect with like-minded people, this program is genuinely worth it."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/samihaalam.jpg')",
+      name: "Samiha Alam",
+      rate: "★★★",
+      profession: "Cambrian School and College",
+      grade: "O Level",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "It's surprising to see such programmes in my country. This organization is creating great opportunities for the ambitious students. "
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/MalihaLinia.jpg')",
+      name: "Maliha Tarannum Linia",
+      rate: "★★★★",
+      profession: "Ideal school and college ",
+      grade: "Gap year",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "This research programme is perfect for a beginners to start their research journey. As a beginner, I discovered my strength and weaknesses of research by the impactful mentorship of this programme."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/jarinX.jpg')",
+      name: "Jarin Tasnim Reboti",
+      rate: "★★★★",
+      profession: "Viqarunnisa Noon School and College",
+      grade: "Gap year",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "It was a great experience. It helped me understand the basics of research and made the whole process feel a lot less scary."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/AyeshaAkter.jpg')",
+      name: "Ayesha Akter Ria Rahman",
+      rate: "★★★★★",
+      profession: "Mirpur Girls Ideal College",
+      grade: "Gap year",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "It has been an incredibly enriching experience. The resources were beneficial, and the team members were supportive. Thank you to the YRJ team for organizing such a transformative experience."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/FarhanaElma.jpg')",
+      name: "Farhana Rahman Elma",
+      rate: "★★★★★",
+      profession: "Mangrove School",
+      grade: "Gap year",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "Unlike many academic journals in Bangladesh that expect polished, complex work, YRJ welcomes fresh perspectives, even if you're just getting started, like me! Whether you are into Tech, literature or health, YRJ got your back. And not to mention, It's perfect for Bangladeshi students who are eager to explore but may not have access to research mentors or formal training."
+  },
+  
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/AhmadAbdullah.png')",
+      name: "Ahmad Abdullah",
+      rate: "★★★",
+      profession: "Glenrich International School Uttara",
+      grade: "Class 9",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "This was an extremely great program to get started with research."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/NAWALR.jpg')",
+      name: "Nawal Rabbani",
+      rate: "★★★",
+      profession: "Glenrich International School Uttara",
+      grade: "Class 9",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "The overall program was entertaining and engaging."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/AreeshaA.jpg')",
+      name: "Areesha Ahmed Raaina ",
+      rate: "★★★",
+      profession: "Glenrich International School Uttara",
+      grade: "Class 9",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "This program is beneficial for developing advanced research skills and gaining a deeper understanding of the key elements that define high-quality academic work."
+  },
+  {
+      photo:
+        "url('https://yrjournal.org/testimonialimg/Karimak.jpg')",
+      name: "Karima Akter",
+      rate: "★★★★★",
+      profession: "Naogaon Government College",
+      grade: "Class 11",
+      programs: "Spring Research Program 2025",
+      country: "Bangladesh",
+      description:
+        "This program was really helpful in guiding us through the research paper writing process."
+  },
+
 	{
 		photo:
 			"url('https://yrjournal.org/awardimg/wrp24/shafi.jpg')",
