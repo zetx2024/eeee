@@ -17,7 +17,7 @@ let people = [
         "url('https://yrjournal.org/testimonialimg/MorsalinaC.jpg')",
       name: "Morsalina Chowdhory Madhabi",
       rate: "★★★★",
-      profession: "Liceo Scientifico Francesco D’assisi",
+      profession: "Liceo Scientifico Francesco D’assisi, Italy",
       grade: "Class 11",
       programs: "Spring Research Program 2025",
       country: "Italy",
