@@ -1,0 +1,87 @@
+           .reviews-section {
+  padding: 2rem 1rem;
+  background-color: #f5f5f5;
+}
+
+.swiper {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.review-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reviewer-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+}
+
+.review-stars {
+  color: #007bff;
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+}
+
+.review-country svg {
+  width: 24px;
+  height: 16px;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+.review-meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 0.5rem;
+}
+
+.review-result {
+  font-weight: bold;
+  color: #007bff;
+  margin-top: 0.25rem;
+}
+
+.review-content {
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 1rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  max-height: 10rem;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Custom scrollbar (optional) */
+.review-content::-webkit-scrollbar {
+  width: 4px;
+}
+.review-content::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 2px;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .review-card {
+    padding: 1rem;
+  }
+
+  .review-content {
+    font-size: 0.85rem;
+    max-height: 8rem;
+  }
+}
