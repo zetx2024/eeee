@@ -1,6 +1,66 @@
 {
   "students": [
     {
+      "name": "MD. Afif Rahaman Tasnim",
+      "institution": "Dhaka College",
+      "year": "2025",
+      "program": "SPRP 2025",
+      "medal": "gold",
+      "image": "https://yrjournal.org/testimonialimg/AfifRahaman.jpg",
+      "presentationLink": "https://www.youtube.com/watch?v=eSGB1GhyKLs",
+      "profileLink": "https://yrjournal.org/awardissue/sprp25/gold/"
+    },
+    {
+      "name": "MD Zubayer Sajid",
+      "institution": "Alfred International School and College",
+      "year": "2025",
+      "program": "SPRP 2025",
+      "medal": "gold",
+      "image": "https://yrjournal.org/awardimg/sprp25/sajid.jpg",
+      "presentationLink": "https://www.youtube.com/watch?v=eSGB1GhyKLs",
+      "profileLink": "https://yrjournal.org/awardissue/sprp25/gold/"
+    },
+    {
+      "name": "Faribta Zaman",
+      "institution": "Birshreshtha Noor Mohammad Public College",
+      "year": "2025",
+      "program": "SPRP 2025",
+      "medal": "silver",
+      "image": "https://yrjournal.org/testimonialimg/AfifRahaman.jpg",
+      "presentationLink": "https://www.youtube.com/watch?v=kVTGyP9bYLg",
+      "profileLink": "https://yrjournal.org/awardissue/sprp25/silver/"
+    },
+    {
+      "name": "Lamisa Sakhawat",
+      "institution": "Viqarunnisa Noon School & College",
+      "year": "2025",
+      "program": "SPRP 2025",
+      "medal": "silver",
+      "image": "https://yrjournal.org/testimonialimg/LRupkotha.jpeg",
+      "presentationLink": "https://www.youtube.com/watch?v=kVTGyP9bYLg",
+      "profileLink": "https://yrjournal.org/awardissue/sprp25/silver/"
+    },
+    {
+      "name": "Samiha Alam",
+      "institution": "Cambrian School and College",
+      "year": "2025",
+      "program": "SPRP 2025",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/samihaalam.jpg",
+      "presentationLink": "https://www.youtube.com/watch?v=CAwO5wgjD6s",
+      "profileLink": "https://yrjournal.org/awardissue/sprp25/bronze/"
+    },
+    {
+      "name": "Tasfiah Khan",
+      "institution": "Birshreshtha Noor Mohammad Public College",
+      "year": "2025",
+      "program": "SPRP 2025",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/testimonialimg/TasfiahKhan.jpg",
+      "presentationLink": "https://www.youtube.com/watch?v=WXVbUBXgzos",
+      "profileLink": "https://yrjournal.org/awardissue/sprp25/bronze/tasfia"
+    },
+    {
       "name": "Sabik Bin Sultan",
       "institution": "South Point School & College",
       "year": "2024",
