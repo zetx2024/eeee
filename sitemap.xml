@@ -38,7 +38,24 @@
       <changefreq>weekly</changefreq>
       <priority>0.80</priority>
     </url>
-   
+    <url>
+      <loc>https://tool.yrjournal.org/</loc>
+      <lastmod>2025-07-13T17:01:57+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.80</priority>
+    </url>
+    <url>
+      <loc>https://tool.yrjournal.org/ieee-citation-generator</loc>
+      <lastmod>2025-07-13T17:01:57+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.80</priority>
+    </url> 
+   <url>
+      <loc>https://tool.yrjournal.org/sample-size-calculator</loc>
+      <lastmod>2025-07-13T17:01:57+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.80</priority>
+    </url> 
    
 
 </urlset>
