@@ -32,8 +32,7 @@
                     <p class="profile-name">${student.name}</p>
                     <p class="profile-institution">${student.institution}</p>
                     <p class="profile-medal">${student.medal.charAt(0).toUpperCase() + student.medal.slice(1)} Medal</p>
-                    <p class="profile-program">${student.program}</p>
-                    <a href="${student.profileLink}" class="view-profile-btn" target="_blank">View Article</a>
+                    <p class="profile-program">${student.year}</p>
                     <a href="${student.presentationLink}" class="view-profile-btn" target="_blank">View Pitch</a>
                 `;
                 profileItem.appendChild(profileText);
