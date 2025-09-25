@@ -1,17 +1,64 @@
 [
   {
+    "year": 2023,
+    "program": "Winter",
+    "totalStudents": 31,
+    "acceptedTopUniversity": 12,
+    "completedResearch": 18,
+    "publishedQ1": 0,
+    "publishedQ2": 0,
+    "publishedQ3": 3,
+    "publishedQ4": 2,
+    "universities": [
+      { "name": "University of British Columbia", "count": 1 },
+      { "name": "University of Wisconsin–Madison", "count": 1 },
+      { "name": "San Francisco State University", "count": 1 },
+      { "name": "San José State University", "count": 1 },
+      { "name": "University of Toronto", "count": 1 }
+    ]
+  },
+  
+  {
     "year": 2024,
     "program": "Winter",
-    "totalStudents": 15,
-    "acceptedTopUniversity": 6,
-    "completedResearch": 4,
-    "publishedQ1": 1,
-    "publishedQ2": 2,
+    "totalStudents": 41,
+    "acceptedTopUniversity": 20,
+    "completedResearch": 25,
+    "publishedQ1": 2,
+    "publishedQ2": 4,
     "publishedQ3": 1,
     "publishedQ4": 0,
     "universities": [
-      { "name": "Harvard University", "count": 2 },
-      { "name": "MIT", "count": 1 }
+      
+      { "name": "MIT", "count": 1 },
+      { "name": "Yale", "count": 1 },
+      { "name": "University of British Columbia", "count": 1 },
+      { "name": "UC Berkeley", "count": 1 },
+      { "name": "University of Wisconsin–Madison", "count": 1 },
+      { "name": "University of Texas at Dallas", "count": 1 },
+      { "name": "Texas Tech University", "count": 1 },
+      { "name": "University of Hong Kong", "count": 1 },
+      { "name": "San Francisco State University", "count": 1 },
+      { "name": "San José State University", "count": 1 },
+      { "name": "University of Toronto", "count": 1 }
+    ]
+  },
+  {
+    "year": 2024,
+    "program": "Spring",
+    "totalStudents": 28,
+    "acceptedTopUniversity": 7,
+    "completedResearch": 11,
+    "publishedQ1": 0,
+    "publishedQ2": 0,
+    "publishedQ3": 1,
+    "publishedQ4": 2,
+    "universities": [
+      { "name": "University of British Columbia", "count": 1 },
+      { "name": "University of Wisconsin–Madison", "count": 1 },
+      { "name": "San Francisco State University", "count": 1 },
+      { "name": "San José State University", "count": 1 },
+      { "name": "University of Toronto", "count": 1 }
     ]
   },
   {
@@ -25,22 +72,14 @@
     "publishedQ3": 0,
     "publishedQ4": 1,
     "universities": [
-      { "name": "University of Toronto", "count": 2 }
-    ]
-  },
-  {
-    "year": 2025,
-    "program": "Spring",
-    "totalStudents": 18,
-    "acceptedTopUniversity": 9,
-    "completedResearch": 6,
-    "publishedQ1": 2,
-    "publishedQ2": 2,
-    "publishedQ3": 1,
-    "publishedQ4": 1,
-    "universities": [
-      { "name": "Oxford University", "count": 3 },
-      { "name": "Stanford University", "count": 2 }
+     { "name": "University of British Columbia", "count": 1 },
+      { "name": "University of Toronto", "count": 1 },
+      { "name": "University of Wisconsin–Madison", "count": 1 },
+      { "name": "University of Texas at Dallas", "count": 1 },
+      { "name": "Texas Tech University", "count": 1 },
+      { "name": "University of Hong Kong", "count": 1 },
+      { "name": "San Francisco State University", "count": 1 },
+      { "name": "San José State University", "count": 1 }
     ]
   }
 ]
