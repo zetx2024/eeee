@@ -1,199 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YRJ Profile Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5fff5;
-      color: #1e4620;
-    }
-
-    header {
-      background: #2d6a4f;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .container {
-      width: 95%;
-      max-width: 1400px;
-      margin: 2rem auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .chart-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      border: 2px solid #74c69d;
-    }
-
-    .chart-card h3 {
-      margin-top: 0;
-      margin-bottom: 1rem;
-      color: #1b4332;
-    }
-
-    canvas {
-      width: 100% !important;
-      height: auto !important;
-    }
-
-    @media (min-width: 900px) {
-      .container {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YRJ Interactive Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; background: #f5fff5; color: #1e4620; }
+header { background: #2d6a4f; color: white; text-align:center; padding:1rem; }
+.container { width:95%; max-width:1400px; margin:2rem auto; display:grid; grid-template-columns:1fr; gap:2rem; }
+.chart-card { background:white; padding:1.5rem; border-radius:12px; box-shadow:0 3px 6px rgba(0,0,0,0.1); border:2px solid #74c69d; }
+.chart-card h3 { margin-top:0; margin-bottom:1rem; color:#1b4332; }
+canvas { width:100% !important; height:auto !important; }
+table { width:100%; border-collapse:collapse; margin-top:1rem; }
+th, td { padding:0.75rem; text-align:left; border-bottom:1px solid #ddd; }
+th { background:#2d6a4f; color:white; }
+tr:nth-child(even){ background:#f1fdf1; }
+.filters { display:flex; gap:1rem; margin-bottom:1rem; flex-wrap:wrap; }
+label { font-weight:bold; }
+select { padding:0.4rem; border-radius:5px; border:1px solid #2d6a4f; }
+@media(min-width:900px){ .container{ grid-template-columns:1fr 1fr; } .chart-card.full-width{ grid-column: span 2; } }
+</style>
 </head>
 <body>
-  <header>
-    <h1>📘 YRJ Profile Dashboard</h1>
-    <p>Students • Achievements • Universities</p>
-  </header>
+<header>
+  <h1>📘 YRJ Interactive Dashboard</h1>
+  <p>Students • Achievements • Universities</p>
+</header>
 
-  <div class="container">
-    <div class="chart-card">
-      <h3>📊 Students per Program by Year</h3>
-      <canvas id="studentsBar"></canvas>
-    </div>
-
-    <div class="chart-card">
-      <h3>📈 Research & Publications Trend</h3>
-      <canvas id="researchLine"></canvas>
-    </div>
-
-    <div class="chart-card">
-      <h3>🟢 Publications Distribution (Q1–Q4)</h3>
-      <canvas id="pubPie"></canvas>
-    </div>
-
-    <div class="chart-card">
-      <h3>🎓 University Acceptances</h3>
-      <canvas id="uniBubble"></canvas>
+<div class="container">
+  <div class="chart-card full-width">
+    <div class="filters">
+      <div>
+        <label for="yearFilter">Filter by Year:</label>
+        <select id="yearFilter">
+          <option value="all">All Years</option>
+        </select>
+      </div>
+      <div>
+        <label for="programFilter">Filter by Program:</label>
+        <select id="programFilter">
+          <option value="all">All Programs</option>
+        </select>
+      </div>
     </div>
   </div>
 
-  <script>
-    const studentsUrl = "https://verify.yrjournal.org//datap.json"; 
-    const parametersUrl = "https://yrjournal.org/profile/parameters.json"; 
+  <div class="chart-card">
+    <h3>📊 Students per Program by Year</h3>
+    <canvas id="studentsBar"></canvas>
+  </div>
 
-    async function loadData() {
-      const [studentsRes, paramsRes] = await Promise.all([
-        fetch(studentsUrl), fetch(parametersUrl)
-      ]);
+  <div class="chart-card">
+    <h3>📈 Research & Publications Trend</h3>
+    <canvas id="researchLine"></canvas>
+  </div>
 
-      const students = await studentsRes.json();
-      const params = await paramsRes.json();
+  <div class="chart-card">
+    <h3>🟢 Publications Distribution (Q1–Q4)</h3>
+    <canvas id="pubPie"></canvas>
+  </div>
 
-      renderCharts(students, params);
+  <div class="chart-card full-width">
+    <h3>🎓 University Acceptances</h3>
+    <canvas id="uniBubble"></canvas>
+    <table id="uniTable">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Program</th>
+          <th>University</th>
+          <th>Accepted Students</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="chart-card full-width">
+    <h3>👩‍🎓 Student Details Scatterplot</h3>
+    <canvas id="studentScatter"></canvas>
+    <table id="studentTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>School</th>
+          <th>Program</th>
+          <th>Year</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const studentsUrl = "https://verify.yrjournal.org/datap.json";
+const parametersUrl = "https://yrjournal.org/profile/parameters.json";
+
+let allStudents = [];
+let allParams = [];
+let programs = [];
+let years = [];
+
+async function loadData() {
+  const [studentsRes, paramsRes] = await Promise.all([fetch(studentsUrl), fetch(parametersUrl)]);
+  const studentsRaw = await studentsRes.json();
+  allStudents = studentsRaw.map(s => ({
+    ...s,
+    year: new Date(s.date).getFullYear(),
+    school: s.location
+  }));
+  allParams = await paramsRes.json();
+
+  programs = [...new Set(allParams.map(p => p.program))];
+  years = [...new Set(allParams.map(p => p.year))].sort();
+
+  populateFilters();
+  renderDashboard();
+}
+
+function populateFilters() {
+  const yearFilter = document.getElementById("yearFilter");
+  years.forEach(y => { const opt = document.createElement("option"); opt.value = y; opt.text = y; yearFilter.appendChild(opt); });
+
+  const programFilter = document.getElementById("programFilter");
+  programs.forEach(p => { const opt = document.createElement("option"); opt.value = p; opt.text = p; programFilter.appendChild(opt); });
+
+  yearFilter.addEventListener("change", renderDashboard);
+  programFilter.addEventListener("change", renderDashboard);
+}
+
+function renderDashboard() {
+  const yearVal = document.getElementById("yearFilter").value;
+  const programVal = document.getElementById("programFilter").value;
+
+  const filteredParams = allParams.filter(p => (yearVal==="all" || p.year==yearVal) && (programVal==="all" || p.program===programVal));
+  const filteredStudents = allStudents.filter(s => (yearVal==="all" || s.year==yearVal) && (programVal==="all" || s.program===programVal));
+
+  // Students Bar
+  const barData = {
+    labels: years,
+    datasets: programs.map((prog,i)=>({
+      label: prog,
+      data: years.map(y => { const rec = filteredParams.find(p=>p.year===y && p.program===prog); return rec?rec.totalStudents:0; }),
+      backgroundColor:["#2d6a4f","#52b788","#95d5b2"][i%3]
+    }))
+  };
+  if(window.studentsBarChart) window.studentsBarChart.destroy();
+  window.studentsBarChart = new Chart(document.getElementById("studentsBar"), { type:'bar', data:barData, options:{ responsive:true, plugins:{ legend:{ position:'bottom' } } } });
+
+  // Research & Publications Line
+  const lineData = {
+    labels: years,
+    datasets: [
+      { label:"Completed Research", data:years.map(y=>filteredParams.filter(p=>p.year===y).reduce((a,b)=>a+b.completedResearch,0)), borderColor:"#2d6a4f", tension:0.3 },
+      { label:"Total Publications", data:years.map(y=>filteredParams.filter(p=>p.year===y).reduce((a,b)=>a+b.publishedQ1+b.publishedQ2+b.publishedQ3+b.publishedQ4,0)), borderColor:"#52b788", tension:0.3 }
+    ]
+  };
+  if(window.researchLineChart) window.researchLineChart.destroy();
+  window.researchLineChart = new Chart(document.getElementById("researchLine"), { type:'line', data:lineData, options:{ responsive:true } });
+
+  // Publications Pie
+  const pubTotals = { Q1:0,Q2:0,Q3:0,Q4:0 };
+  filteredParams.forEach(p=>{ pubTotals.Q1+=p.publishedQ1; pubTotals.Q2+=p.publishedQ2; pubTotals.Q3+=p.publishedQ3; pubTotals.Q4+=p.publishedQ4; });
+  if(window.pubPieChart) window.pubPieChart.destroy();
+  window.pubPieChart = new Chart(document.getElementById("pubPie"), {
+    type:'doughnut',
+    data:{ labels:["Q1","Q2","Q3","Q4"], datasets:[{ data:[pubTotals.Q1,pubTotals.Q2,pubTotals.Q3,pubTotals.Q4], backgroundColor:["#1b4332","#2d6a4f","#52b788","#95d5b2"] }] },
+    options:{ responsive:true, plugins:{ legend:{ position:"right"} } }
+  });
+
+  // University Bubble + Table
+  const uniData = [];
+  const uniTableBody = document.querySelector("#uniTable tbody");
+  uniTableBody.innerHTML = "";
+  filteredParams.forEach(p=>{
+    if(p.universities){
+      p.universities.forEach(u=>{
+        uniData.push({ label:u.name, data:[{x:p.year, y:programs.indexOf(p.program)+1, r:u.count*5}], backgroundColor:"#52b788" });
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${p.year}</td><td>${p.program}</td><td>${u.name}</td><td>${u.count}</td>`;
+        uniTableBody.appendChild(row);
+      });
     }
+  });
+  if(window.uniBubbleChart) window.uniBubbleChart.destroy();
+  window.uniBubbleChart = new Chart(document.getElementById("uniBubble"), {
+    type:'bubble',
+    data:{ datasets:uniData },
+    options:{ responsive:true, plugins:{ legend:{ display:false } }, scales:{ x:{ title:{ display:true, text:"Year"}, ticks:{ stepSize:1 } }, y:{ title:{ display:true, text:"Program"}, ticks:{ callback:v=>programs[v-1]||'' }, min:0.5, max:programs.length+0.5 } } }
+  });
 
-    function renderCharts(students, params) {
-      const years = [...new Set(params.map(p => p.year))].sort();
-      const programs = [...new Set(params.map(p => p.program))];
+  // Student Scatter + Table
+  const scatterData = filteredStudents.map((s,i)=>({ x:i+1, y:s.year, label:s.name, school:s.school }));
+  if(window.studentScatterChart) window.studentScatterChart.destroy();
+  window.studentScatterChart = new Chart(document.getElementById("studentScatter"), {
+    type:'scatter',
+    data:{ datasets:[{ label:"Students", data:scatterData, backgroundColor:"#2d6a4f" }] },
+    options:{ responsive:true, plugins:{ tooltip:{ callbacks:{ label(ctx){ return `${ctx.raw.label} - ${ctx.raw.school} (${ctx.raw.y})`; } } } }, scales:{ x:{ title:{ display:true, text:"Student Index"} }, y:{ title:{ display:true, text:"Year"} } } }
+  });
 
-      // 📊 Students per program/year (Bar)
-      const barData = {
-        labels: years,
-        datasets: programs.map((prog, i) => ({
-          label: prog,
-          data: years.map(y => {
-            const rec = params.find(p => p.year === y && p.program === prog);
-            return rec ? rec.totalStudents : 0;
-          }),
-          backgroundColor: ["#2d6a4f","#52b788","#95d5b2"][i % 3]
-        }))
-      };
-      new Chart(document.getElementById("studentsBar"), {
-        type: 'bar',
-        data: barData,
-        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
-      });
+  // Student Table
+  const studentTableBody = document.querySelector("#studentTable tbody");
+  studentTableBody.innerHTML = "";
+  filteredStudents.forEach(s=>{
+    const row = document.createElement("tr");
+    row.innerHTML = `<td>${s.name}</td><td>${s.school}</td><td>${s.program}</td><td>${s.year}</td>`;
+    studentTableBody.appendChild(row);
+  });
+}
 
-      // 📈 Line: Completed Research & Publications
-      const lineData = {
-        labels: years,
-        datasets: [
-          {
-            label: "Completed Research",
-            data: years.map(y => params.filter(p => p.year === y).reduce((a,b)=>a+b.completedResearch,0)),
-            borderColor: "#2d6a4f",
-            tension: 0.3
-          },
-          {
-            label: "Total Publications",
-            data: years.map(y => params.filter(p => p.year === y).reduce((a,b)=>a+b.publishedQ1+b.publishedQ2+b.publishedQ3+b.publishedQ4,0)),
-            borderColor: "#52b788",
-            tension: 0.3
-          }
-        ]
-      };
-      new Chart(document.getElementById("researchLine"), {
-        type: 'line',
-        data: lineData,
-        options: { responsive: true }
-      });
-
-      // 🟢 Pie: Publications distribution (all years combined)
-      const pubTotals = { Q1:0,Q2:0,Q3:0,Q4:0 };
-      params.forEach(p=>{
-        pubTotals.Q1+=p.publishedQ1;
-        pubTotals.Q2+=p.publishedQ2;
-        pubTotals.Q3+=p.publishedQ3;
-        pubTotals.Q4+=p.publishedQ4;
-      });
-      new Chart(document.getElementById("pubPie"), {
-        type: 'doughnut',
-        data: {
-          labels: ["Q1","Q2","Q3","Q4"],
-          datasets: [{
-            data: [pubTotals.Q1,pubTotals.Q2,pubTotals.Q3,pubTotals.Q4],
-            backgroundColor:["#1b4332","#2d6a4f","#52b788","#95d5b2"]
-          }]
-        },
-        options: { responsive:true, plugins:{ legend:{ position:"right"} } }
-      });
-
-      // 🎓 Bubble: Universities (size = count)
-      const uniData = [];
-      params.forEach(p=>{
-        p.universities.forEach(u=>{
-          uniData.push({
-            label: u.name,
-            data: [{ x: p.year, y: programs.indexOf(p.program)+1, r: u.count*5 }],
-            backgroundColor: "#52b788"
-          });
-        });
-      });
-      new Chart(document.getElementById("uniBubble"), {
-        type: 'bubble',
-        data: { datasets: uniData },
-        options: {
-          responsive:true,
-          scales: {
-            x: { title:{ display:true, text:"Year"}, ticks:{ stepSize:1 } },
-            y: { 
-              title:{ display:true, text:"Program" }, 
-              ticks:{ callback: v=>programs[v-1]||'' }, 
-              min:0.5, max:programs.length+0.5 
-            }
-          }
-        }
-      });
-    }
-
-    loadData();
-  </script>
+loadData();
+</script>
 </body>
 </html>
