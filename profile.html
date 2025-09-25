@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YRJ Profile Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5fff5;
+      color: #1e4620;
+    }
+
+    header {
+      background: #2d6a4f;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .container {
+      width: 95%;
+      max-width: 1400px;
+      margin: 2rem auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .chart-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      border: 2px solid #74c69d;
+    }
+
+    .chart-card h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: #1b4332;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    @media (min-width: 900px) {
+      .container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📘 YRJ Profile Dashboard</h1>
+    <p>Students • Achievements • Universities</p>
+  </header>
+
+  <div class="container">
+    <div class="chart-card">
+      <h3>📊 Students per Program by Year</h3>
+      <canvas id="studentsBar"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>📈 Research & Publications Trend</h3>
+      <canvas id="researchLine"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>🟢 Publications Distribution (Q1–Q4)</h3>
+      <canvas id="pubPie"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>🎓 University Acceptances</h3>
+      <canvas id="uniBubble"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const studentsUrl = "https://verify.yrjournal.org//datap.json"; 
+    const parametersUrl = "https://yrjournal.org/profile/parameters.json"; 
+
+    async function loadData() {
+      const [studentsRes, paramsRes] = await Promise.all([
+        fetch(studentsUrl), fetch(parametersUrl)
+      ]);
+
+      const students = await studentsRes.json();
+      const params = await paramsRes.json();
+
+      renderCharts(students, params);
+    }
+
+    function renderCharts(students, params) {
+      const years = [...new Set(params.map(p => p.year))].sort();
+      const programs = [...new Set(params.map(p => p.program))];
+
+      // 📊 Students per program/year (Bar)
+      const barData = {
+        labels: years,
+        datasets: programs.map((prog, i) => ({
+          label: prog,
+          data: years.map(y => {
+            const rec = params.find(p => p.year === y && p.program === prog);
+            return rec ? rec.totalStudents : 0;
+          }),
+          backgroundColor: ["#2d6a4f","#52b788","#95d5b2"][i % 3]
+        }))
+      };
+      new Chart(document.getElementById("studentsBar"), {
+        type: 'bar',
+        data: barData,
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+      });
+
+      // 📈 Line: Completed Research & Publications
+      const lineData = {
+        labels: years,
+        datasets: [
+          {
+            label: "Completed Research",
+            data: years.map(y => params.filter(p => p.year === y).reduce((a,b)=>a+b.completedResearch,0)),
+            borderColor: "#2d6a4f",
+            tension: 0.3
+          },
+          {
+            label: "Total Publications",
+            data: years.map(y => params.filter(p => p.year === y).reduce((a,b)=>a+b.publishedQ1+b.publishedQ2+b.publishedQ3+b.publishedQ4,0)),
+            borderColor: "#52b788",
+            tension: 0.3
+          }
+        ]
+      };
+      new Chart(document.getElementById("researchLine"), {
+        type: 'line',
+        data: lineData,
+        options: { responsive: true }
+      });
+
+      // 🟢 Pie: Publications distribution (all years combined)
+      const pubTotals = { Q1:0,Q2:0,Q3:0,Q4:0 };
+      params.forEach(p=>{
+        pubTotals.Q1+=p.publishedQ1;
+        pubTotals.Q2+=p.publishedQ2;
+        pubTotals.Q3+=p.publishedQ3;
+        pubTotals.Q4+=p.publishedQ4;
+      });
+      new Chart(document.getElementById("pubPie"), {
+        type: 'doughnut',
+        data: {
+          labels: ["Q1","Q2","Q3","Q4"],
+          datasets: [{
+            data: [pubTotals.Q1,pubTotals.Q2,pubTotals.Q3,pubTotals.Q4],
+            backgroundColor:["#1b4332","#2d6a4f","#52b788","#95d5b2"]
+          }]
+        },
+        options: { responsive:true, plugins:{ legend:{ position:"right"} } }
+      });
+
+      // 🎓 Bubble: Universities (size = count)
+      const uniData = [];
+      params.forEach(p=>{
+        p.universities.forEach(u=>{
+          uniData.push({
+            label: u.name,
+            data: [{ x: p.year, y: programs.indexOf(p.program)+1, r: u.count*5 }],
+            backgroundColor: "#52b788"
+          });
+        });
+      });
+      new Chart(document.getElementById("uniBubble"), {
+        type: 'bubble',
+        data: { datasets: uniData },
+        options: {
+          responsive:true,
+          scales: {
+            x: { title:{ display:true, text:"Year"}, ticks:{ stepSize:1 } },
+            y: { 
+              title:{ display:true, text:"Program" }, 
+              ticks:{ callback: v=>programs[v-1]||'' }, 
+              min:0.5, max:programs.length+0.5 
+            }
+          }
+        }
+      });
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
