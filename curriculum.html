@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Research 101 Curriculum — YRJ</title>
+
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --green-1: #0a8a43;
+      --green-2: #0f9d58;
+      --bg: #f4fff7;
+      --card-bg: #ffffff;
+      --muted: #556b57;
+      --radius: 14px;
+      --max-width: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg), #eaf8ec);
+      color:#223;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Header */
+    header{
+      background: linear-gradient(135deg,var(--green-1),var(--green-2));
+      color:white;
+      padding:28px 18px;
+      text-align:center;
+      box-shadow: 0 4px 20px rgba(10,138,67,0.18);
+    }
+    header h1{font-size:1.8rem;margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:12px}
+    header p{opacity:.95;margin:0;font-size:0.96rem}
+
+    /* Container */
+    .container{
+      max-width:var(--max-width);
+      margin:24px auto;
+      padding:0 18px 48px;
+    }
+
+    /* Top controls */
+    .top-bar{
+      display:flex;
+      gap:12px;
+      justify-content:space-between;
+      align-items:center;
+      margin:18px 0;
+    }
+    .toc {
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .toc a{
+      background:transparent;
+      border:1px solid rgba(15,157,88,0.12);
+      color:var(--green-1);
+      padding:8px 12px;
+      text-decoration:none;
+      border-radius:999px;
+      font-weight:600;
+      font-size:0.9rem;
+    }
+    .controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .btn{
+      background:var(--green-2);
+      color:white;
+      border:none;
+      padding:8px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+      box-shadow: 0 6px 14px rgba(15,157,88,0.12);
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--green-1);
+      border:1px solid rgba(10,138,67,0.12);
+      box-shadow:none;
+    }
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:20px;
+    }
+
+    /* Card / Section */
+    .module{
+      background:var(--card-bg);
+      padding:18px;
+      border-radius:var(--radius);
+      box-shadow: 0 10px 26px rgba(22,46,20,0.06);
+      border-left:8px solid var(--green-2);
+      overflow:hidden;
+    }
+    .module h2{
+      display:flex;align-items:center;gap:12px;
+      color:var(--green-1);
+      font-size:1.25rem;
+      margin:0 0 12px;
+    }
+    .module p.lead{margin:0 0 12px;color:var(--muted);font-size:0.95rem}
+
+    /* Accordion */
+    .accordion{
+      border-radius:12px;
+      overflow:hidden;
+    }
+    .acc-item{
+      border-top:1px dashed rgba(15,157,88,0.06);
+    }
+    .acc-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px;
+      cursor:pointer;
+      background:linear-gradient(90deg, rgba(240,255,244,0.8), rgba(245,255,249,0.6));
+      transition:background .18s;
+    }
+    .acc-head:hover{background:linear-gradient(90deg, rgba(240,255,244,1), rgba(240,255,246,1))}
+    .acc-title{display:flex;gap:12px;align-items:center}
+    .acc-title h3{font-size:1rem;margin:0;color:#154a2b}
+    .acc-title span.badge{font-size:0.8rem;color:var(--green-2);font-weight:700}
+    .acc-toggle{font-size:0.9rem;color:var(--muted)}
+
+    .acc-body{
+      padding:14px 18px 20px;
+      background: #fff;
+      display:none;
+      animation: slideDown .25s ease both;
+    }
+    .acc-body.show{display:block}
+
+    /* content formatting */
+    .subsection{margin-bottom:12px}
+    .subsection h4{margin:0 0 8px;color:#0a6c3a;font-size:0.98rem}
+    .subsection p{margin:0 0 8px;color:#2b3a2f}
+    .subsection ul{margin:0 0 10px 18px;color:#2b3a2f}
+    .subsection ul li{margin:6px 0;line-height:1.45}
+
+    /* two-column details on wide screens */
+    @media(min-width:980px){
+      .grid{grid-template-columns: 1fr 340px;}
+      .module{padding:22px}
+      .side-card{
+        position:sticky; top:26px;
+        background:var(--card-bg);
+        padding:18px;border-radius:12px;border-left:6px solid var(--green-1);
+        box-shadow: 0 10px 26px rgba(22,46,20,0.06);
+      }
+    }
+
+    /* small screens */
+    @media(max-width:420px){
+      header h1{font-size:1.25rem}
+      .toc a{padding:6px 8px;font-size:0.82rem}
+      .acc-head{padding:12px}
+      .acc-body{padding:12px}
+    }
+
+    /* helper */
+    .muted{color:var(--muted)}
+    .icon{
+      width:40px;height:40px;border-radius:8px;background:linear-gradient(120deg, rgba(15,157,88,0.1), rgba(10,138,67,0.08));display:inline-flex;align-items:center;justify-content:center;color:var(--green-2);font-size:18px;
+    }
+
+    @keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+    /* anchor offset */
+    :target{scroll-margin-top:120px}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><i class="fa-solid fa-seedling"></i> Research 101 Curriculum</h1>
+    <p>Youth Research Journal (YRJ) Flagship Program — essential skills to initiate, conduct, and present high-quality academic research.</p>
+  </header>
+
+  <div class="container">
+
+    <div class="top-bar">
+      <div class="toc" aria-hidden="false">
+        <a href="#m1">Foundations</a>
+        <a href="#m2">Concepts & Skills</a>
+        <a href="#m3">Competitions</a>
+        <a href="#m4">Next Steps</a>
+      </div>
+
+      <div class="controls">
+        <button class="btn" id="expandAll"><i class="fa-solid fa-folder-open"></i>&nbsp; Expand All</button>
+        <button class="btn ghost" id="collapseAll"><i class="fa-solid fa-compress"></i>&nbsp; Collapse All</button>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <!-- MAIN COLUMN -->
+      <div>
+
+        <!-- Intro Module Card -->
+        <section class="module">
+          <h2><i class="fa-solid fa-book"></i> Program Overview</h2>
+          <p class="lead">The Research 101 Program equips students with the essential skills to initiate, conduct, and present high-quality academic research. Through a systematic curriculum, students learn practice and theory — from formulating questions to finalizing manuscripts for competitions and publication.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div style="min-width:150px">
+              <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
+              <div style="font-weight:700;margin-top:8px">Target</div>
+              <div class="muted" style="font-size:0.9rem">Students, early researchers and competition entrants</div>
+            </div>
+            <div style="min-width:150px">
+              <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+              <div style="font-weight:700;margin-top:8px">Outcomes</div>
+              <div class="muted" style="font-size:0.9rem">Publishable manuscript skills, searching & citation proficiency, statistics foundation</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MODULE 1 -->
+        <section id="m1" class="module" aria-labelledby="m1">
+          <h2><i class="fa-solid fa-pen-nib"></i> Module 1: Foundations of Academic Writing</h2>
+          <p class="lead">Complete, hands-on instruction on research and review paper creation, submission rules, and structure.</p>
+
+          <div class="accordion" id="acc-m1">
+
+            <!-- 1.1 Research Paper Writing -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m1-1">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-file-lines"></i></div>
+                  <div>
+                    <h3>1.1 Research Paper: Research Paper Writing</h3>
+                    <div class="muted" style="font-size:0.88rem">Learning outcomes, guidelines, sections & references</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><span class="badge">3500+ words</span> <i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m1-1" class="acc-body">
+                <div class="subsection">
+                  <h4>Learning Outcomes</h4>
+                  <p>Students will learn to design, structure, and prepare a full-length research paper suitable for submission and competitions.</p>
+                </div>
+
+                <div class="subsection">
+                  <h4>General Guidelines (MANDATORY)</h4>
+                  <ul>
+                    <li>Minimum 3500 words total.</li>
+                    <li>Use the YRJ Microsoft Word template and submit in <strong>.docx</strong> format.</li>
+                    <li>Include all text, figures, and tables with clear figure captions.</li>
+                    <li>English language only.</li>
+                    <li>Mandatory IEEE style for in-text citations and reference list.</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Submission of Versions</h4>
+                  <ul>
+                    <li>Upload a complete manuscript (.docx).</li>
+                    <li>Upload a text-only version (.docx) (figures removed or placeholders).</li>
+                    <li>Upload a figures-only version (.docx) (all figures and captions compiled).</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Title Page & Abstract</h4>
+                  <ul>
+                    <li><strong>Title Page</strong> — Title (≤20 words), author names, affiliations, and credit to mentors/collaborators.</li>
+                    <li><strong>Abstract</strong> — Concise overview (≤300 words): significance, defined problem, brief methodology, key findings, and broader impact.</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Core Sections</h4>
+                  <ul>
+                    <li><strong>Introduction:</strong> Set the stage, incorporate literature, articulate objectives/questions/hypotheses, preview conclusions.</li>
+                    <li><strong>Literature Review:</strong> Comprehensive review, theoretical frameworks, key concepts, and contributions to knowledge.</li>
+                    <li><strong>Methods:</strong> Research design, sampling strategy (justify sample size), data collection, data analysis methods and statistical tools.</li>
+                    <li><strong>Results:</strong> Present findings objectively — use tables/figures/charts, descriptive & inferential statistics, properly labeled visuals.</li>
+                    <li><strong>Discussion:</strong> Interpret findings relative to questions and literature, address limitations and biases, discuss implications.</li>
+                    <li><strong>Conclusion:</strong> Summarize outcomes, significance, contributions, and future research directions.</li>
+                    <li><strong>References:</strong> IEEE style — every in-text citation must have a reference list entry.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 1.2 Review Paper -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m1-2">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-book"></i></div>
+                  <div>
+                    <h3>1.2 Review Paper: Review Paper Writing</h3>
+                    <div class="muted" style="font-size:0.88rem">Synthesis, methods for reviews, and publication standards</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><span class="badge">3500+ words</span> <i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m1-2" class="acc-body">
+                <div class="subsection">
+                  <h4>Learning Outcomes</h4>
+                  <p>Students will learn how to critically evaluate and synthesize the existing literature to produce a high-quality review paper.</p>
+                </div>
+
+                <div class="subsection">
+                  <h4>General Guidelines</h4>
+                  <ul>
+                    <li>Minimum 3500 words.</li>
+                    <li>Use YRJ Word template, .docx submission, English only.</li>
+                    <li>Mandatory IEEE style for citations.</li>
+                    <li>Submit complete manuscript, text-only version, and figures-only version separately.</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Abstract (≤350 words)</h4>
+                  <p>Summarize the importance of the review, define its purpose/question, highlight the main hypothesis/focus, outline findings, and underscore implications.</p>
+                </div>
+
+                <div class="subsection">
+                  <h4>Sections & Methods</h4>
+                  <ul>
+                    <li><strong>Introduction:</strong> Introduce the scientific context, background references, research purpose/hypothesis/rationale, and a glimpse of conclusions.</li>
+                    <li><strong>Methods:</strong> Describe the review protocol — search strategy, inclusion/exclusion criteria, data extraction, and quality assessment methods.</li>
+                    <li><strong>Results, Discussion, Conclusion:</strong> Present synthesized findings, interpret results in the literature context, discuss implications and biases, and conclude with key takeaways and future needs.</li>
+                    <li><strong>References:</strong> IEEE style for all citations.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- MODULE 2 -->
+        <section id="m2" class="module">
+          <h2><i class="fa-solid fa-lightbulb"></i> Module 2: Research Concepts & Skills</h2>
+          <p class="lead">Core conceptual foundations and practical skills: asking good questions, searching, citing, tools, statistics, and completing research.</p>
+
+          <div class="accordion" id="acc-m2">
+
+            <!-- 2.1 The Concept of Research -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-1">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-brain"></i></div>
+                  <div>
+                    <h3>2.1 The Concept of Research</h3>
+                    <div class="muted" style="font-size:0.88rem">Definition, characteristics, types, and the research process</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-1" class="acc-body">
+                <div class="subsection">
+                  <h4>Definition & Characteristics</h4>
+                  <p>Research is a quest for understanding — systematic, objective, generating new knowledge, cumulative, and designed to fill gaps between known and unknown.</p>
+                </div>
+
+                <div class="subsection">
+                  <h4>Types of Research & Articles</h4>
+                  <ul>
+                    <li><strong>Types:</strong> Experimental, observational, survey, qualitative, quantitative.</li>
+                    <li><strong>Article types:</strong> Research (original findings) vs. Review (syntheses of existing work).</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>The Research Process</h4>
+                  <p>Typical steps: identifying research questions → literature review → study design → data collection → data analysis → interpretation & reporting.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.2 Formulating a Research Question -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-2">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-question"></i></div>
+                  <div>
+                    <h3>2.2 Formulating a Research Question</h3>
+                    <div class="muted" style="font-size:0.88rem">SMART, FINER, FINERMAPS, and refinement techniques</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-2" class="acc-body">
+                <div class="subsection">
+                  <h4>Significance & Process</h4>
+                  <p>Research questions (RQs) provide focus and direction, articulate purpose and significance, and must be testable and measurable. Develop RQs by selecting subjects of interest, preliminary reading, and narrowing scope.</p>
+                </div>
+
+                <div class="subsection">
+                  <h4>Criteria</h4>
+                  <ul>
+                    <li><strong>SMART:</strong> Specific, Measurable, Achievable, Relevant, Time-bound.</li>
+                    <li><strong>FINER:</strong> Feasible, Interesting, Novel, Ethical, Relevant.</li>
+                    <li><strong>FINERMAPS:</strong> Feasible, Interesting, Novel, Ethical, Relevant, Measurable, Appropriate, Parsimonious, Significant.</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Refinement</h4>
+                  <p>Refine through preliminary reading to identify debates, and seek feedback from mentors/peers for revision.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.3 Using Trusted & Scholarly Sources -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-3">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-book-open"></i></div>
+                  <div>
+                    <h3>2.3 Using Trusted & Scholarly Sources</h3>
+                    <div class="muted" style="font-size:0.88rem">How to recognize and use trustworthy academic materials</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-3" class="acc-body">
+                <div class="subsection">
+                  <h4>Trusted Resources vs Non-scholarly</h4>
+                  <ul>
+                    <li>Trusted = peer-reviewed journal articles, reputable books, academic publishers.</li>
+                    <li>Potentially appropriate = scholarly books, encyclopedias (use carefully), institutional reports.</li>
+                    <li>Usually inappropriate = personal blogs, non-reviewed websites, general magazines for evidence.</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Finding & Evaluating Sources</h4>
+                  <ul>
+                    <li>Use databases: Google Scholar, PubMed, JSTOR, ScienceDirect.</li>
+                    <li>Evaluate books and journals (publisher reputation, peer review).</li>
+                    <li>Avoid untrustworthy or pirated sources; use tools like Unpaywall to find legal PDFs.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.4 Searching Effectively -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-4">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                  <div>
+                    <h3>2.4 Searching Effectively</h3>
+                    <div class="muted" style="font-size:0.88rem">Practical search strategies, operators and ethical considerations</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-4" class="acc-body">
+                <div class="subsection">
+                  <h4>Search Strategy</h4>
+                  <ul>
+                    <li>Start broad to gain context, then refine with keywords and Boolean operators (AND, OR, NOT).</li>
+                    <li>Use wildcards: asterisk (*) for root variations, question mark (?) for single-character variations.</li>
+                    <li>Choose tools: Google Scholar, PubMed, JSTOR, ScienceDirect; explore AI assistants (Elicit, Research Rabbit) for discovery.</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Google Operators & Ethics</h4>
+                  <ul>
+                    <li>Useful operators: site:, filetype:, inurl:, "exact phrase", after:YYYY-MM-DD, before:YYYY-MM-DD.</li>
+                    <li>Ethical considerations: avoid pirated copies, use Unpaywall or institutional access when available.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.5 Citation & Academic Integrity -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-5">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-quote-right"></i></div>
+                  <div>
+                    <h3>2.5 Proper Citation & Academic Integrity</h3>
+                    <div class="muted" style="font-size:0.88rem">Why citations matter, types of plagiarism, and how to cite correctly</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-5" class="acc-body">
+                <div class="subsection">
+                  <h4>Why Cite?</h4>
+                  <p>Citation signals sources of ideas and evidence — it's fundamental for academic integrity, responsibility, and trust.</p>
+                </div>
+
+                <div class="subsection">
+                  <h4>Plagiarism: Types & Consequences</h4>
+                  <ul>
+                    <li>Identity/Complete Plagiarism, Direct Plagiarism, Paraphrasing Plagiarism, Recycling (self-plagiarism), Source-based, Mosaic, and Accidental Plagiarism.</li>
+                    <li>Consequences: academic penalties, reputation damage, legal issues.</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>How to Avoid Plagiarism</h4>
+                  <ul>
+                    <li>Always cite sources and use quotations when necessary.</li>
+                    <li>Paraphrase correctly and record sources while researching.</li>
+                    <li>Use plagiarism checkers to interpret similarity scores (ideal 5–25% small similarity depending on discipline).</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Citation Style & Tools</h4>
+                  <ul>
+                    <li>YRJ uses IEEE style for in-text citations and references.</li>
+                    <li>Tools: Zotero, Mendeley (citation management). Use caution relying on auto-generated citations without checking format.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.6 Essential Research Software -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-6">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-computer"></i></div>
+                  <div>
+                    <h3>2.6 Essential Research Software</h3>
+                    <div class="muted" style="font-size:0.88rem">Tools for citation, typesetting, simulation, and plagiarism checks</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-6" class="acc-body">
+                <div class="subsection">
+                  <h4>Tool Types</h4>
+                  <ul>
+                    <li><strong>Simulation / Field tools:</strong> AutoCAD, Gambit, Aspen Plus (use field-specific software as needed).</li>
+                    <li><strong>Research assistant tools:</strong> Zotero (bibliography management), citation plug-ins, proofreading tools.</li>
+                    <li><strong>Typesetting:</strong> LaTeX (recommended for complex math/technical papers) — Overleaf (online) or TeXStudio (desktop).</li>
+                    <li><strong>Plagiarism checkers:</strong> Use them to confirm originality and interpret similarity scores responsibly.</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>LaTeX Basics (Optional)</h4>
+                  <ul>
+                    <li>Create a first document: documentclass, begin/end document, maketitle.</li>
+                    <li>Text formatting: \textbf{}, \textit{}, lists (itemize, enumerate).</li>
+                    <li>Bibliography: thebibliography, \bibitem, \cite commands (or BibTeX / BibLaTeX).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.7 Research Paper Structure -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-7">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-structure"></i></div>
+                  <div>
+                    <h3>2.7 Research Paper Structure</h3>
+                    <div class="muted" style="font-size:0.88rem">What to include in each major section of a paper</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-7" class="acc-body">
+                <div class="subsection">
+                  <h4>Key Sections</h4>
+                  <ul>
+                    <li>Title Page — title, authors, affiliations, corresponding author details, optional running header, keywords.</li>
+                    <li>Abstract — standalone 150–300 words summarizing what, why, how, and key results.</li>
+                    <li>Introduction — topic, background, proposed problem, objectives and structure map.</li>
+                    <li>Literature Review — define topic, search peer-reviewed literature, outline gaps.</li>
+                    <li>Methods — “How you reached findings” (details omitted earlier but include protocol, instruments, analyses).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.8 Statistics 101 -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-8">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-calculator"></i></div>
+                  <div>
+                    <h3>2.8 Statistics 101 (Basic Statistics Manual)</h3>
+                    <div class="muted" style="font-size:0.88rem">Modules 1–8 covering essentials for research</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-8" class="acc-body">
+                <div class="subsection">
+                  <h4>Contents (Overview)</h4>
+                  <ul>
+                    <li><strong>Module 1:</strong> Introduction to Statistics in Research — why statistics matters.</li>
+                    <li><strong>Module 2:</strong> Fundamentals of data types & measurement scales.</li>
+                    <li><strong>Module 3:</strong> Descriptive statistics — mean, median, mode, standard deviation.</li>
+                    <li><strong>Module 4:</strong> Inferential statistics — hypothesis testing, confidence intervals.</li>
+                    <li><strong>Module 5:</strong> Correlation and association — Pearson, Spearman; interpretation.</li>
+                    <li><strong>Module 6:</strong> Data collection & sampling techniques — designing sampling plans.</li>
+                    <li><strong>Module 7:</strong> Integrating statistics in mixed-method research — tools & approaches.</li>
+                    <li><strong>Module 8:</strong> Practical applications and exercises — hands-on practice and interpretation.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.9 Abstract vs Intro vs Conclusion -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-9">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-align-left"></i></div>
+                  <div>
+                    <h3>2.9 Abstract vs Introduction vs Conclusion</h3>
+                    <div class="muted" style="font-size:0.88rem">Clear distinctions and purposes</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-9" class="acc-body">
+                <div class="subsection">
+                  <h4>Abstract</h4>
+                  <p>Standalone summary with core purpose, methods, findings and significance.</p>
+                </div>
+                <div class="subsection">
+                  <h4>Introduction</h4>
+                  <p>Background information, objectives, research problem and the roadmap for the paper.</p>
+                </div>
+                <div class="subsection">
+                  <h4>Conclusion</h4>
+                  <p>Summarize contributions, practical/theoretical implications and future research directions.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.10 Planning & Monitoring -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-10">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-calendar-check"></i></div>
+                  <div>
+                    <h3>2.10 Making a Plan & Monitoring Progress</h3>
+                    <div class="muted" style="font-size:0.88rem">Project planning and milestone tracking</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-10" class="acc-body">
+                <div class="subsection">
+                  <h4>Planning</h4>
+                  <ul>
+                    <li>Create realistic timelines and Gantt-style milestones for each research phase.</li>
+                    <li>Identify deliverables (protocol, data collection, draft, final manuscript).</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Monitoring</h4>
+                  <ul>
+                    <li>Track progress via Trello, Notion or similar tools; set weekly goals and retrospectives.</li>
+                    <li>Keep logs of data collection and decision rationales for reproducibility.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.11 Executing methodology -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-11">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-play"></i></div>
+                  <div>
+                    <h3>2.11 Executing Your Methodology</h3>
+                    <div class="muted" style="font-size:0.88rem">From obtaining results to reporting them correctly</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-11" class="acc-body">
+                <div class="subsection">
+                  <h4>Obtaining Results</h4>
+                  <p>Careful data collection, documentation of instruments and protocols, ensuring ethical approvals when needed.</p>
+                </div>
+
+                <div class="subsection">
+                  <h4>Reporting Results</h4>
+                  <ul>
+                    <li>Use clear tables, figures and charts with captions and labels.</li>
+                    <li>Report descriptive and inferential statistics as appropriate and include caveats.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.12 Peer Review -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-12">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-user-check"></i></div>
+                  <div>
+                    <h3>2.12 Peer Review</h3>
+                    <div class="muted" style="font-size:0.88rem">Conceptual understanding and practical applications</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-12" class="acc-body">
+                <div class="subsection">
+                  <h4>Concept</h4>
+                  <p>Peer review is an essential quality control step — independent assessment by experts to improve clarity, rigour and trustworthiness.</p>
+                </div>
+
+                <div class="subsection">
+                  <h4>Applications</h4>
+                  <ul>
+                    <li>How to review: constructive feedback, checking methods, reproducibility, and citation completeness.</li>
+                    <li>How to respond: address reviewer comments professionally, make tracked changes, and provide a response letter.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2.13 Finalizing -->
+            <div class="acc-item">
+              <div class="acc-head" data-target="m2-13">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-check-double"></i></div>
+                  <div>
+                    <h3>2.13 Finalizing Your Paper</h3>
+                    <div class="muted" style="font-size:0.88rem">Proofreading, formatting and submission compliance</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m2-13" class="acc-body">
+                <div class="subsection">
+                  <h4>Final Steps</h4>
+                  <ul>
+                    <li>Proofread thoroughly (grammar, data consistency, figure captions).</li>
+                    <li>Format per YRJ template and IEEE style; check all citations match the reference list.</li>
+                    <li>Prepare submission packages (manuscript, text-only, figures-only) and any required cover letters.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- MODULE 3 -->
+        <section id="m3" class="module">
+          <h2><i class="fa-solid fa-trophy"></i> Module 3: Research in Competitions</h2>
+          <p class="lead">How to identify the right competitions and represent your project effectively.</p>
+
+          <div class="accordion" id="acc-m3">
+            <div class="acc-item">
+              <div class="acc-head" data-target="m3-1">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-flag-checkered"></i></div>
+                  <div>
+                    <h3>3.1 Knowing the Right Competitions</h3>
+                    <div class="muted" style="font-size:0.88rem">Selecting platforms that match your topic and level</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m3-1" class="acc-body">
+                <div class="subsection">
+                  <h4>Identifying Competitions</h4>
+                  <ul>
+                    <li>Choose competitions aligned with research scope, stage (student/undergrad/postgrad), and novelty.</li>
+                    <li>Check eligibility, deadlines, submission requirements, and judging criteria.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <div class="acc-head" data-target="m3-2">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                  <div>
+                    <h3>3.2 Summarizing & Representing Your Project</h3>
+                    <div class="muted" style="font-size:0.88rem">Pitch, poster, and summary best practices</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m3-2" class="acc-body">
+                <div class="subsection">
+                  <h4>Presenting Your Research</h4>
+                  <ul>
+                    <li>Write concise summaries and abstracts tailored to judges or reviewers.</li>
+                    <li>Design posters with clear visuals: aim for one key message per panel, legible fonts, and labelled figures.</li>
+                    <li>Prepare short pitches (1–3 minutes) highlighting problem, method, result, and impact.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- MODULE 4 -->
+        <section id="m4" class="module">
+          <h2><i class="fa-solid fa-forward"></i> Module 4: What After That? — Next Steps</h2>
+          <p class="lead">Opportunities after finishing a research project and how to grow as a researcher.</p>
+
+          <div class="accordion" id="acc-m4">
+            <div class="acc-item">
+              <div class="acc-head" data-target="m4-1">
+                <div class="acc-title">
+                  <div class="icon"><i class="fa-solid fa-book-atlas"></i></div>
+                  <div>
+                    <h3>Publishing & Career Development</h3>
+                    <div class="muted" style="font-size:0.88rem">Journals, conferences, portfolio building, and collaborations</div>
+                  </div>
+                </div>
+                <div class="acc-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+              </div>
+
+              <div id="m4-1" class="acc-body">
+                <div class="subsection">
+                  <h4>Publishing Opportunities</h4>
+                  <ul>
+                    <li>Target appropriate journals or conferences that match your topic and novelty.</li>
+                    <li>Prepare cover letters, follow journal instructions, and be open to revisions.</li>
+                  </ul>
+                </div>
+
+                <div class="subsection">
+                  <h4>Research Portfolio & Collaboration</h4>
+                  <ul>
+                    <li>Keep a living portfolio: preprints, posters, datasets, code, and talks.</li>
+                    <li>Seek collaborations, mentorship, and advanced training (courses, labs, internships).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Program Outcomes -->
+        <section class="module">
+          <h2><i class="fa-solid fa-bullseye"></i> 🎯 Program Outcomes</h2>
+          <div class="subsection">
+            <ul>
+              <li>✅ Master the full process of academic research and writing.</li>
+              <li>✅ Gain hands-on skills in searching, citing, analyzing, and writing research.</li>
+              <li>✅ Understand statistics and their applications in real research.</li>
+              <li>✅ Be ready to publish papers and excel in international research competitions.</li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- SIDE COLUMN -->
+      <aside class="side-card" aria-hidden="false">
+        <h3 style="margin-top:0;color:var(--green-1)"><i class="fa-solid fa-info-circle"></i> Quick Info</h3>
+        <p class="muted">Use the sections to jump directly to topics. Expand sub-sections to read details. This page contains a full curriculum ready to copy into your handbook or convert into slides.</p>
+
+        <hr style="border:none;height:1px;background:linear-gradient(90deg,rgba(15,157,88,0.06),transparent);margin:14px 0">
+
+        <h4 style="margin:6px 0">Submission Requirements</h4>
+        <ul>
+          <li>Minimum: 3500 words</li>
+          <li>Files: manuscript (.docx), text-only (.docx), figures-only (.docx)</li>
+          <li>Language: English</li>
+          <li>Style: IEEE</li>
+        </ul>
+
+        <hr style="border:none;height:1px;background:linear-gradient(90deg,rgba(15,157,88,0.06),transparent);margin:14px 0">
+
+        <h4 style="margin:6px 0">Recommended Tools</h4>
+        <ul>
+          <li>Zotero / Mendeley (citations)</li>
+          <li>Overleaf / LaTeX (typesetting)</li>
+          <li>Trello / Notion (planning)</li>
+          <li>Unpaywall (legal PDFs)</li>
+        </ul>
+
+        <hr style="border:none;height:1px;background:linear-gradient(90deg,rgba(15,157,88,0.06),transparent);margin:14px 0">
+
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn" onclick="print()">Print</button>
+          <button class="btn ghost" id="downloadOutline">Download Outline</button>
+        </div>
+
+      </aside>
+
+    </div> <!-- grid -->
+
+  </div> <!-- container -->
+
+  <footer style="text-align:center;padding:22px 12px;background:linear-gradient(135deg,var(--green-2),var(--green-1));color:white">
+    <div style="max-width:var(--max-width);margin:auto">
+      <div style="font-weight:700">© 2025 Youth Research Journal | Research 101 Curriculum</div>
+      <div style="font-size:0.9rem;opacity:.95">Designed for learners — ready to convert into slides, PDF guides, or LMS pages.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Accordion behavior
+    document.querySelectorAll('.acc-head').forEach(head => {
+      head.addEventListener('click', () => {
+        const targetId = head.getAttribute('data-target');
+        const body = document.getElementById(targetId);
+        if(!body) return;
+        const isShown = body.classList.contains('show');
+        // hide all bodies in the same accordion
+        const parentAcc = head.closest('.accordion');
+        if(parentAcc){
+          parentAcc.querySelectorAll('.acc-body').forEach(b => { if(b !== body) b.classList.remove('show'); });
+        }
+        if(!isShown) body.classList.add('show'); else body.classList.remove('show');
+      });
+    });
+
+    // Expand / Collapse All
+    const expandAllBtn = document.getElementById('expandAll');
+    const collapseAllBtn = document.getElementById('collapseAll');
+
+    expandAllBtn.addEventListener('click', () => {
+      document.querySelectorAll('.acc-body').forEach(b => b.classList.add('show'));
+      // Scroll the first open into view softly
+      const first = document.querySelector('.acc-body.show');
+      if(first) first.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+    collapseAllBtn.addEventListener('click', () => {
+      document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('show'));
+    });
+
+    // Download outline as plain text file (simple export)
+    document.getElementById('downloadOutline').addEventListener('click', () => {
+      const title = "Research_101_Curriculum_Outline.txt";
+      // Gather key headings quickly (for brevity)
+      const items = [];
+      document.querySelectorAll('section.module h2').forEach(h => items.push(h.innerText.trim()));
+      const content = [
+        "Research 101 Curriculum — YRJ",
+        "",
+        "Modules & Headings:",
+        ...items,
+        "",
+        "Full curriculum details are available on the page."
+      ].join("\n");
+      const blob = new Blob([content], {type: 'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = title;
+      document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 1500);
+    });
+
+    // Simple print helper
+    function print(){ window.print(); }
+
+    // keyboard accessibility: open/close with Enter on focused acc-head
+    document.querySelectorAll('.acc-head').forEach(h=>{
+      h.tabIndex = 0;
+      h.addEventListener('keydown', e=>{
+        if(e.key === 'Enter' || e.key === ' ') h.click();
+      });
+    });
+
+  </script>
+
+</body>
+</html>
