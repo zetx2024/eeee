@@ -78,19 +78,8 @@ select { padding:0.4rem; border-radius:5px; border:1px solid #2d6a4f; }
   </div>
 
   <div class="chart-card full-width">
-    <h3>👩‍🎓 Student Details Scatterplot</h3>
-    <canvas id="studentScatter"></canvas>
-    <table id="studentTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>School</th>
-          <th>Program</th>
-          <th>Year</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <h3>🏫 Students per School</h3>
+    <canvas id="schoolBar"></canvas>
   </div>
 </div>
 
@@ -192,22 +181,39 @@ function renderDashboard() {
     options:{ responsive:true, plugins:{ legend:{ display:false } }, scales:{ x:{ title:{ display:true, text:"Year"}, ticks:{ stepSize:1 } }, y:{ title:{ display:true, text:"Program"}, ticks:{ callback:v=>programs[v-1]||'' }, min:0.5, max:programs.length+0.5 } } }
   });
 
-  // Student Scatter + Table
-  const scatterData = filteredStudents.map((s,i)=>({ x:i+1, y:s.year, label:s.name, school:s.school }));
-  if(window.studentScatterChart) window.studentScatterChart.destroy();
-  window.studentScatterChart = new Chart(document.getElementById("studentScatter"), {
-    type:'scatter',
-    data:{ datasets:[{ label:"Students", data:scatterData, backgroundColor:"#2d6a4f" }] },
-    options:{ responsive:true, plugins:{ tooltip:{ callbacks:{ label(ctx){ return `${ctx.raw.label} - ${ctx.raw.school} (${ctx.raw.y})`; } } } }, scales:{ x:{ title:{ display:true, text:"Student Index"} }, y:{ title:{ display:true, text:"Year"} } } }
-  });
+  // Students per School Bar with hover names
+  const schools = [...new Set(filteredStudents.map(s=>s.school))];
+  const schoolCounts = schools.map(school=>filteredStudents.filter(st=>st.school===school).length);
+  const schoolStudentMap = {};
+  schools.forEach(school=>schoolStudentMap[school]=filteredStudents.filter(st=>st.school===school).map(st=>st.name));
 
-  // Student Table
-  const studentTableBody = document.querySelector("#studentTable tbody");
-  studentTableBody.innerHTML = "";
-  filteredStudents.forEach(s=>{
-    const row = document.createElement("tr");
-    row.innerHTML = `<td>${s.name}</td><td>${s.school}</td><td>${s.program}</td><td>${s.year}</td>`;
-    studentTableBody.appendChild(row);
+  if(window.schoolBarChart) window.schoolBarChart.destroy();
+  window.schoolBarChart = new Chart(document.getElementById("schoolBar"), {
+    type:'bar',
+    data:{
+      labels: schools,
+      datasets:[{
+        label:'Number of Students',
+        data: schoolCounts,
+        backgroundColor:"#52b788"
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{ display:false },
+        tooltip:{
+          callbacks:{
+            label: function(ctx){
+              const names = schoolStudentMap[ctx.label].join(", ");
+              return `Students: ${ctx.raw} → ${names}`;
+            }
+          }
+        }
+      },
+      indexAxis:'y',
+      scales:{ x:{ title:{ display:true, text:'Number of Students'} }, y:{ title:{ display:true, text:'School'} } }
+    }
   });
 }
 
