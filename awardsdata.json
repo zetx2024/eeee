@@ -1,6 +1,96 @@
 {
   "students": [
     {
+      "name": "Iris Rubama Raihan",
+      "institution": "ACADEMIA",
+      "year": "2025",
+      "program": "WRP 2025",
+      "medal": "gold",
+      "image": "https://yrjournal.org/awardimg/wrp25/Iris_Ru.jpeg",
+      "presentationLink": "https://www.youtube.com/live/E-mtCjdUCOY?si=WgSwTB0qSPF3RJS_&t=11070",
+      "profileLink": "https://yrjournal.org/awardissue/wrp25/gold/"
+    },
+    {
+      "name": "Sharika Alam",
+      "institution": "Bangladesh International Tutorial",
+      "year": "2025",
+      "program": "WRP 2025",
+      "medal": "gold",
+      "image": "https://yrjournal.org/awardimg/wrp25/Sharika_Alam.jpg",
+      "presentationLink": "https://www.youtube.com/live/E-mtCjdUCOY?si=WgSwTB0qSPF3RJS_&t=11070",
+      "profileLink": "https://yrjournal.org/awardissue/wrp25/gold/"
+    },
+    {
+      "name": "Yasha Mumtahina",
+      "institution": "Bangladesh International School and College",
+      "year": "2025",
+      "program": "WRP 2025",
+      "medal": "gold",
+      "image": "https://yrjournal.org/awardimg/wrp25/Yasham.JPG",
+      "presentationLink": "https://www.youtube.com/live/E-mtCjdUCOY?si=WgSwTB0qSPF3RJS_&t=11070",
+      "profileLink": "https://yrjournal.org/awardissue/wrp25/gold/2"
+    },
+     {
+      "name": "Kazi Afsan Rawnak Anan",
+      "institution": "Glenrich International School, Uttara",
+      "year": "2025",
+      "program": "WRP 2025",
+      "medal": "silver",
+      "image": "https://yrjournal.org/awardimg/wrp25/Kazi_Afsan.jpg",
+      "presentationLink": "https://www.youtube.com/live/E-mtCjdUCOY?si=7xwVZYK90URyi9it&t=9910",
+      "profileLink": "https://yrjournal.org/awardissue/wrp25/silver/"
+    },
+    {
+      "name": "Ahraf Hossain",
+      "institution": "International Hope School Bangladesh",
+      "year": "2025",
+      "program": "WRP 2025",
+      "medal": "silver",
+      "image": "https://yrjournal.org/awardimg/wrp25/AhrafHossain.jpeg",
+      "presentationLink": "https://www.youtube.com/live/E-mtCjdUCOY?si=7xwVZYK90URyi9it&t=9910",
+      "profileLink": "https://yrjournal.org/awardissue/wrp25/silver/2"
+    },
+    {
+      "name": "Ishraq Numair Samad",
+      "institution": "International Hope School Bangladesh",
+      "year": "2025",
+      "program": "WRP 2025",
+      "medal": "silver",
+      "image": "https://yrjournal.org/awardimg/wrp25/IshraqSamadi.jpeg",
+      "presentationLink": "https://www.youtube.com/live/E-mtCjdUCOY?si=7xwVZYK90URyi9it&t=9910",
+      "profileLink": "https://yrjournal.org/awardissue/wrp25/silver/2"
+    },
+    {
+      "name": "Abyaz Abresham",
+      "institution": "South Breeze School",
+      "year": "2025",
+      "program": "WRP 2025",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/awardimg/wrp25/Abyaz.jpeg",
+      "presentationLink": "https://www.youtube.com/live/E-mtCjdUCOY?si=YK53BI6zsFUI65wR&t=11733",
+      "profileLink": "https://yrjournal.org/awardissue/wrp25/bronze/"
+    },
+    {
+      "name": "Namira Aiyana Rahman",
+      "institution": "South Breeze School",
+      "year": "2025",
+      "program": "WRP 2025",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/awardimg/wrp25/Aiyanap.jpeg",
+      "presentationLink": "https://www.youtube.com/live/E-mtCjdUCOY?si=YK53BI6zsFUI65wR&t=11733",
+      "profileLink": "https://yrjournal.org/awardissue/wrp25/bronze/"
+    },
+    {
+      "name": "Monosij Ilham",
+      "institution": "South Breeze School",
+      "year": "2025",
+      "program": "WRP 2025",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/awardimg/wrp25/MonosijIlham.png",
+      "presentationLink": "https://www.youtube.com/live/E-mtCjdUCOY?si=YK53BI6zsFUI65wR&t=11733",
+      "profileLink": "https://yrjournal.org/awardissue/wrp25/bronze/"
+    },
+    {
       "name": "Mashfia Rahman Nidhi",
       "institution": "Maple Leaf International School",
       "year": "2025",
