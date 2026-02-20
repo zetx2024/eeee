@@ -1,5 +1,5 @@
 // URL of the PDF you want to view
-const pdfUrl = 'https://yrjournal.org/awardissue/wrp25/gold/Yasha_gold.pdf';
+const pdfUrl = 'https://yrjournal.org/awardissue/wrp25/gold/2.pdf';
 
 // Initialize PDF.js
 const pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -45,4 +45,5 @@ function renderPage(num) {
 }
 
 // Disable right-click context menu
+
 document.addEventListener('contextmenu', event => event.preventDefault());
