@@ -1,20 +1,22 @@
-/* ==========================================
-   WORLD CUP LOGO ANIMATION (INFINITE LOOP)
-   ========================================== */
-
 /* Container alignment for the logo link */
 #wc-logo-animate {
   position: relative;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden; /* Keeps the flying ball inside the navbar zone */
+  justify-content: flex-start; /* Keeps logo left-aligned */
+  min-width: 220px; /* Gives the ball space to fly on desktop */
+  overflow: hidden; 
+  /* Hardware Acceleration: Stops the browser from showing "loading" */
+  transform: translateZ(0); 
 }
 
 /* Controls your actual logo image visibility timeline */
 #wc-logo-animate img {
   opacity: 0;
-  animation: wc-reveal-logo 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  /* Adds a subtle highlight glow to your logo */
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
+  animation: wc-reveal-logo 8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform, opacity, filter;
 }
 
 /* 1. The Boot/Leg */
@@ -27,7 +29,8 @@
   opacity: 0;
   z-index: 10;
   transform-origin: top center;
-  animation: wc-kick 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation: wc-kick 8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform, opacity;
 }
 
 /* 2. The Rainbow Football */
@@ -39,56 +42,57 @@
   top: 12px;
   z-index: 9;
   border-radius: 50%;
-  animation: wc-fly-rainbow 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation: wc-fly-rainbow 8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform, opacity, filter;
 }
 
-/* --- ANIMATION TIMELINES (6-Second Total Loop) --- */
+/* --- ANIMATION TIMELINES (8-Second Total Loop) --- */
 
-/* Leg swings back, strikes the ball, then waits hidden until the next loop */
+/* Leg swings back, strikes the ball, then waits hidden */
 @keyframes wc-kick {
   0% { transform: translateX(-10px) rotate(-45deg); opacity: 0; }
-  4% { opacity: 1; transform: translateX(0px) rotate(-30deg); }
-  8% { transform: translateX(25px) rotate(20deg); opacity: 1; } /* Impact point */
-  12% { transform: translateX(15px) rotate(10deg); opacity: 0; }
+  5% { opacity: 1; transform: translateX(0px) rotate(-30deg); }
+  10% { transform: translateX(25px) rotate(20deg); opacity: 1; } /* Impact point */
+  15% { transform: translateX(15px) rotate(10deg); opacity: 0; }
   100% { opacity: 0; }
 }
 
-/* Ball changes rainbow hues, takes the hit, flies off, and resets invisibly */
+/* Ball takes the hit, flies further across the new width, and resets invisibly */
 @keyframes wc-fly-rainbow {
   0% { 
-    transform: scale(1) translate(0, 0) rotate(0deg); 
-    filter: hue-rotate(0deg) saturate(3) drop-shadow(0 0 4px #ff0000); 
+    transform: scale(1) translate(0, 0); 
+    filter: hue-rotate(0deg) saturate(3) drop-shadow(0 0 5px #ff0000); 
     opacity: 1; 
   }
-  7% { 
-    transform: scale(1.05) translate(0, 0) rotate(0deg); 
-    filter: hue-rotate(120deg) saturate(3) drop-shadow(0 0 6px #00ff00); 
+  8% { 
+    transform: scale(1.05) translate(0, 0); 
+    filter: hue-rotate(120deg) saturate(3) drop-shadow(0 0 8px #00ff00); 
     opacity: 1;
   }
-  8% { /* Moment of Impact */
-    transform: scale(0.9) translate(0, 0) rotate(0deg); 
-    filter: hue-rotate(240deg) saturate(4) drop-shadow(0 0 10px #00ffff); 
+  10% { /* Moment of Impact */
+    transform: scale(0.9) translate(0, 0); 
+    filter: hue-rotate(240deg) saturate(4) drop-shadow(0 0 12px #00ffff); 
     opacity: 1;
   } 
-  15% { 
+  18% { 
     opacity: 1; 
   }
-  25% { 
-    transform: translate(160px, -12px) rotate(540deg) scale(0.5); 
+  30% { /* Flies 220px to utilize the new desktop width */
+    transform: translate(220px, -15px) rotate(720deg) scale(0.5); 
     opacity: 0; 
     filter: hue-rotate(360deg) saturate(3); 
   }
   100% { 
     opacity: 0; 
-    transform: translate(160px, -12px); 
+    transform: translate(220px, -15px); 
   }
 }
 
-/* Logo slides in, rests statically for 3.5 seconds, then fades out to prepare for the next kick */
+/* Logo slides in, glows slightly, rests for a long time, then fades out */
 @keyframes wc-reveal-logo {
-  0%, 9% { opacity: 0; transform: translateX(-20px); }
-  18% { opacity: 1; transform: translateX(0); }
-  90% { opacity: 1; transform: translateX(0); } /* Holds the logo visible */
-  95% { opacity: 0; transform: translateX(20px); } /* Graceful exit before reset */
+  0%, 12% { opacity: 0; transform: translateX(-20px); }
+  20% { opacity: 1; transform: translateX(0); filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)); } /* Bright glow on arrival */
+  28%, 92% { opacity: 1; transform: translateX(0); filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2)); } /* Normal resting state */
+  96% { opacity: 0; transform: translateX(20px); } 
   100% { opacity: 0; transform: translateX(-20px); }
 }
