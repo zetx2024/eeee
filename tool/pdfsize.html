@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PDF Coordinate Picker</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs"
+        type="module"></script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #111827;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    .app {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    /* =========================
+       TOP BAR
+    ========================= */
+
+    .topbar {
+        height: 64px;
+        min-height: 64px;
+        background: #1f2937;
+        border-bottom: 1px solid #374151;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 16px;
+        z-index: 20;
+    }
+
+    .title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    .file-label {
+        background: #2563eb;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 7px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .file-label:hover {
+        background: #1d4ed8;
+    }
+
+    #pdfFile {
+        display: none;
+    }
+
+    button {
+        border: 0;
+        background: #374151;
+        color: white;
+        padding: 9px 13px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    button:hover {
+        background: #4b5563;
+    }
+
+    button:disabled {
+        opacity: .4;
+        cursor: not-allowed;
+    }
+
+    .page-info {
+        font-size: 14px;
+        color: #d1d5db;
+        margin-left: 4px;
+        white-space: nowrap;
+    }
+
+    .zoom-info {
+        min-width: 55px;
+        text-align: center;
+        font-size: 14px;
+        color: #d1d5db;
+    }
+
+    .spacer {
+        flex: 1;
+    }
+
+    /* =========================
+       MAIN AREA
+    ========================= */
+
+    .main {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+    }
+
+    /* =========================
+       PDF VIEWER
+    ========================= */
+
+    .viewer {
+        flex: 1;
+        overflow: auto;
+        background:
+            linear-gradient(
+                45deg,
+                #1b2330 25%,
+                transparent 25%
+            ) 0 0 / 20px 20px,
+            linear-gradient(
+                -45deg,
+                #1b2330 25%,
+                transparent 25%
+            ) 0 0 / 20px 20px,
+            linear-gradient(
+                45deg,
+                transparent 75%,
+                #1b2330 75%
+            ) 0 0 / 20px 20px,
+            linear-gradient(
+                -45deg,
+                transparent 75%,
+                #1b2330 75%
+            ) 0 0 / 20px 20px,
+            #161d29;
+
+        padding: 40px;
+    }
+
+    .empty {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #9ca3af;
+        text-align: center;
+    }
+
+    .empty-box {
+        border: 2px dashed #4b5563;
+        border-radius: 12px;
+        padding: 50px;
+        max-width: 500px;
+    }
+
+    .empty-box h2 {
+        margin-top: 0;
+        color: #e5e7eb;
+    }
+
+    .empty-box p {
+        line-height: 1.6;
+    }
+
+    .page-wrapper {
+        position: relative;
+        width: fit-content;
+        margin: 0 auto 50px auto;
+        box-shadow: 0 15px 50px rgba(0,0,0,.45);
+    }
+
+    canvas {
+        display: block;
+        background: white;
+    }
+
+    /* =========================
+       CROSSHAIR
+    ========================= */
+
+    .crosshair {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        pointer-events: none;
+        display: none;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+    }
+
+    .crosshair::before,
+    .crosshair::after {
+        content: "";
+        position: absolute;
+        background: #e11d48;
+    }
+
+    .crosshair::before {
+        width: 24px;
+        height: 2px;
+        top: 11px;
+        left: 0;
+    }
+
+    .crosshair::after {
+        height: 24px;
+        width: 2px;
+        top: 0;
+        left: 11px;
+    }
+
+    .crosshair-dot {
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #e11d48;
+        border: 1px solid white;
+        top: 8px;
+        left: 8px;
+    }
+
+    /* =========================
+       SIDE PANEL
+    ========================= */
+
+    .panel {
+        width: 360px;
+        min-width: 360px;
+        background: #111827;
+        border-left: 1px solid #374151;
+        overflow-y: auto;
+        padding: 18px;
+    }
+
+    .panel h2 {
+        font-size: 17px;
+        margin: 0 0 16px 0;
+    }
+
+    .section {
+        background: #1f2937;
+        border: 1px solid #374151;
+        border-radius: 9px;
+        padding: 14px;
+        margin-bottom: 14px;
+    }
+
+    .section-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .7px;
+        color: #9ca3af;
+        margin-bottom: 12px;
+        font-weight: 700;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 6px 0;
+        border-bottom: 1px solid #374151;
+    }
+
+    .row:last-child {
+        border-bottom: 0;
+    }
+
+    .label {
+        color: #9ca3af;
+    }
+
+    .value {
+        font-family: Consolas, Monaco, monospace;
+        color: #f9fafb;
+        font-weight: 700;
+        text-align: right;
+        word-break: break-word;
+    }
+
+    .coordinate {
+        font-size: 25px;
+        font-family: Consolas, Monaco, monospace;
+        color: #facc15;
+        font-weight: 700;
+        margin: 4px 0;
+    }
+
+    .coordinate-small {
+        font-size: 14px;
+        color: #93c5fd;
+        font-family: Consolas, Monaco, monospace;
+        margin-top: 5px;
+    }
+
+    .code-box {
+        background: #0b1220;
+        border: 1px solid #374151;
+        border-radius: 7px;
+        padding: 12px;
+        font-family: Consolas, Monaco, monospace;
+        font-size: 12px;
+        line-height: 1.6;
+        color: #d1d5db;
+        overflow-x: auto;
+        white-space: pre;
+    }
+
+    .copy-btn {
+        width: 100%;
+        margin-top: 10px;
+        background: #059669;
+    }
+
+    .copy-btn:hover {
+        background: #047857;
+    }
+
+    .hint {
+        font-size: 12px;
+        color: #9ca3af;
+        line-height: 1.6;
+    }
+
+    .status {
+        padding: 9px 11px;
+        border-radius: 6px;
+        background: #064e3b;
+        color: #a7f3d0;
+        font-size: 12px;
+        margin-bottom: 14px;
+        display: none;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+        .panel {
+            width: 300px;
+            min-width: 300px;
+        }
+
+        .viewer {
+            padding: 20px;
+        }
+
+        .title {
+            display: none;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .main {
+            flex-direction: column;
+        }
+
+        .panel {
+            width: 100%;
+            min-width: 100%;
+            height: 330px;
+            border-left: 0;
+            border-top: 1px solid #374151;
+        }
+
+        .viewer {
+            height: calc(100vh - 394px);
+        }
+
+        .topbar {
+            overflow-x: auto;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         TOP BAR
+    ========================= -->
+
+    <div class="topbar">
+
+        <div class="title">
+            PDF Coordinate Picker
+        </div>
+
+        <label class="file-label">
+            Select PDF
+            <input
+                type="file"
+                id="pdfFile"
+                accept="application/pdf"
+            >
+        </label>
+
+        <button id="prevPage" disabled>
+            ◀
+        </button>
+
+        <div class="page-info" id="pageInfo">
+            Page 0 / 0
+        </div>
+
+        <button id="nextPage" disabled>
+            ▶
+        </button>
+
+        <div class="spacer"></div>
+
+        <button id="zoomOut">
+            −
+        </button>
+
+        <div class="zoom-info" id="zoomInfo">
+            100%
+        </div>
+
+        <button id="zoomIn">
+            +
+        </button>
+
+        <button id="resetZoom">
+            Reset
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="main">
+
+        <!-- PDF -->
+        <div class="viewer" id="viewer">
+
+            <div class="empty" id="emptyState">
+
+                <div class="empty-box">
+
+                    <h2>
+                        PDF Coordinate Picker
+                    </h2>
+
+                    <p>
+                        Select your certificate PDF.
+                        The page dimensions will be detected
+                        automatically.
+                    </p>
+
+                    <p>
+                        Then simply <strong>click anywhere</strong>
+                        on the PDF to obtain the exact X/Y
+                        coordinate for your JavaScript PDF generator.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFORMATION PANEL -->
+        <div class="panel">
+
+            <h2>
+                Coordinate Information
+            </h2>
+
+            <div class="status" id="status">
+                PDF loaded successfully.
+            </div>
+
+
+            <!-- PAGE INFORMATION -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    PDF Page
+                </div>
+
+                <div class="row">
+                    <span class="label">Page</span>
+                    <span class="value" id="infoPage">—</span>
+                </div>
+
+                <div class="row">
+                    <span class="label">Width</span>
+                    <span class="value" id="infoWidth">—</span>
+                </div>
+
+                <div class="row">
+                    <span class="label">Height</span>
+                    <span class="value" id="infoHeight">—</span>
+                </div>
+
+                <div class="row">
+                    <span class="label">Orientation</span>
+                    <span class="value" id="infoOrientation">—</span>
+                </div>
+
+                <div class="row">
+                    <span class="label">Size</span>
+                    <span class="value" id="infoSize">—</span>
+                </div>
+
+            </div>
+
+
+            <!-- CLICK COORDINATES -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    Selected Position
+                </div>
+
+                <div class="coordinate" id="coordXY">
+                    X: —
+                </div>
+
+                <div class="coordinate" id="coordY">
+                    Y: —
+                </div>
+
+                <div class="coordinate-small" id="coordPt">
+                    PDF points
+                </div>
+
+            </div>
+
+
+            <!-- OTHER UNITS -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    Converted Position
+                </div>
+
+                <div class="row">
+                    <span class="label">X (mm)</span>
+                    <span class="value" id="xMM">—</span>
+                </div>
+
+                <div class="row">
+                    <span class="label">Y (mm)</span>
+                    <span class="value" id="yMM">—</span>
+                </div>
+
+                <div class="row">
+                    <span class="label">X (inch)</span>
+                    <span class="value" id="xInch">—</span>
+                </div>
+
+                <div class="row">
+                    <span class="label">Y (inch)</span>
+                    <span class="value" id="yInch">—</span>
+                </div>
+
+            </div>
+
+
+            <!-- JAVASCRIPT -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    JavaScript Coordinates
+                </div>
+
+                <div class="code-box" id="jsCode">
+// Click the PDF
+// to generate coordinates
+                </div>
+
+                <button
+                    class="copy-btn"
+                    id="copyBtn"
+                    disabled
+                >
+                    Copy JavaScript
+                </button>
+
+            </div>
+
+
+            <!-- IMPORTANT -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    Coordinate System
+                </div>
+
+                <div class="hint">
+
+                    Browser coordinates normally start at
+                    the <strong>top-left</strong> of the page.
+
+                    <br><br>
+
+                    PDF libraries such as pdf-lib use the
+                    <strong>bottom-left</strong> as the origin.
+
+                    <br><br>
+
+                    This tool therefore calculates both
+                    the browser position and the converted
+                    PDF coordinate.
+
+                    <br><br>
+
+                    The displayed JavaScript value is ready
+                    to use with:
+
+                    <br><br>
+
+                    <strong>page.drawText()</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+/* =========================================================
+   PDF.JS
+========================================================= */
+
+import {
+    getDocument,
+    GlobalWorkerOptions
+} from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
+
+GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const pdfFile =
+    document.getElementById("pdfFile");
+
+const viewer =
+    document.getElementById("viewer");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+const prevPage =
+    document.getElementById("prevPage");
+
+const nextPage =
+    document.getElementById("nextPage");
+
+const pageInfo =
+    document.getElementById("pageInfo");
+
+const zoomInfo =
+    document.getElementById("zoomInfo");
+
+const zoomIn =
+    document.getElementById("zoomIn");
+
+const zoomOut =
+    document.getElementById("zoomOut");
+
+const resetZoom =
+    document.getElementById("resetZoom");
+
+const status =
+    document.getElementById("status");
+
+const infoPage =
+    document.getElementById("infoPage");
+
+const infoWidth =
+    document.getElementById("infoWidth");
+
+const infoHeight =
+    document.getElementById("infoHeight");
+
+const infoOrientation =
+    document.getElementById("infoOrientation");
+
+const infoSize =
+    document.getElementById("infoSize");
+
+const coordXY =
+    document.getElementById("coordXY");
+
+const coordY =
+    document.getElementById("coordY");
+
+const coordPt =
+    document.getElementById("coordPt");
+
+const xMM =
+    document.getElementById("xMM");
+
+const yMM =
+    document.getElementById("yMM");
+
+const xInch =
+    document.getElementById("xInch");
+
+const yInch =
+    document.getElementById("yInch");
+
+const jsCode =
+    document.getElementById("jsCode");
+
+const copyBtn =
+    document.getElementById("copyBtn");
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let pdfDoc = null;
+
+let currentPage = 1;
+
+let totalPages = 0;
+
+let zoom = 1;
+
+let pageData = null;
+
+let lastCoordinates = null;
+
+
+/* =========================================================
+   LOAD PDF
+========================================================= */
+
+pdfFile.addEventListener("change", async function(event) {
+
+    const file = event.target.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    if (file.type !== "application/pdf") {
+        alert("Please select a PDF file.");
+        return;
+    }
+
+    try {
+
+        status.style.display = "none";
+
+        const arrayBuffer =
+            await file.arrayBuffer();
+
+        const loadingTask =
+            getDocument({
+                data: arrayBuffer
+            });
+
+        pdfDoc =
+            await loadingTask.promise;
+
+        totalPages =
+            pdfDoc.numPages;
+
+        currentPage = 1;
+
+        zoom = 1;
+
+        emptyState.style.display = "none";
+
+        status.textContent =
+            "PDF loaded successfully.";
+
+        status.style.display = "block";
+
+        prevPage.disabled =
+            totalPages <= 1;
+
+        nextPage.disabled =
+            totalPages <= 1;
+
+        await renderPage();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to load this PDF.\n\n" +
+            error.message
+        );
+
+    }
+
+});
+
+
+/* =========================================================
+   RENDER PAGE
+========================================================= */
+
+async function renderPage() {
+
+    if (!pdfDoc) {
+        return;
+    }
+
+    const page =
+        await pdfDoc.getPage(currentPage);
+
+    /*
+     * PDF.js viewport at scale 1.
+     * Width/height are PDF points.
+     */
+
+    const baseViewport =
+        page.getViewport({
+            scale: 1
+        });
+
+    const widthPt =
+        baseViewport.width;
+
+    const heightPt =
+        baseViewport.height;
+
+    /*
+     * Actual displayed viewport.
+     */
+
+    const viewport =
+        page.getViewport({
+            scale: zoom
+        });
+
+
+    /* Remove old page */
+
+    const oldWrapper =
+        viewer.querySelector(".page-wrapper");
+
+    if (oldWrapper) {
+        oldWrapper.remove();
+    }
+
+
+    /* Create wrapper */
+
+    const wrapper =
+        document.createElement("div");
+
+    wrapper.className =
+        "page-wrapper";
+
+
+    /* Canvas */
+
+    const canvas =
+        document.createElement("canvas");
+
+    const context =
+        canvas.getContext("2d");
+
+    canvas.width =
+        Math.floor(viewport.width);
+
+    canvas.height =
+        Math.floor(viewport.height);
+
+    canvas.style.width =
+        viewport.width + "px";
+
+    canvas.style.height =
+        viewport.height + "px";
+
+
+    /* Crosshair */
+
+    const crosshair =
+        document.createElement("div");
+
+    crosshair.className =
+        "crosshair";
+
+    crosshair.innerHTML =
+        `<div class="crosshair-dot"></div>`;
+
+
+    wrapper.appendChild(canvas);
+
+    wrapper.appendChild(crosshair);
+
+    viewer.appendChild(wrapper);
+
+
+    /* Render PDF */
+
+    await page.render({
+
+        canvasContext: context,
+
+        viewport: viewport
+
+    }).promise;
+
+
+    /* Store data */
+
+    pageData = {
+
+        page,
+
+        wrapper,
+
+        canvas,
+
+        crosshair,
+
+        widthPt,
+
+        heightPt,
+
+        viewport
+
+    };
+
+
+    /* Page information */
+
+    updatePageInfo();
+
+
+    /* Click handling */
+
+    canvas.addEventListener(
+        "click",
+        handleCanvasClick
+    );
+
+
+    /* Mouse position preview */
+
+    canvas.addEventListener(
+        "mousemove",
+        handleMouseMove
+    );
+
+}
+
+
+/* =========================================================
+   PAGE INFORMATION
+========================================================= */
+
+function updatePageInfo() {
+
+    if (!pageData) {
+        return;
+    }
+
+    const {
+        widthPt,
+        heightPt
+    } = pageData;
+
+
+    pageInfo.textContent =
+        `Page ${currentPage} / ${totalPages}`;
+
+
+    zoomInfo.textContent =
+        Math.round(zoom * 100) + "%";
+
+
+    infoPage.textContent =
+        `${currentPage} / ${totalPages}`;
+
+
+    infoWidth.textContent =
+        `${widthPt.toFixed(2)} pt`;
+
+
+    infoHeight.textContent =
+        `${heightPt.toFixed(2)} pt`;
+
+
+    infoOrientation.textContent =
+        widthPt > heightPt
+            ? "Landscape"
+            : widthPt < heightPt
+                ? "Portrait"
+                : "Square";
+
+
+    infoSize.textContent =
+        `${(widthPt / 72).toFixed(2)} × ` +
+        `${(heightPt / 72).toFixed(2)} in`;
+
+
+    clearCoordinates();
+
+}
+
+
+/* =========================================================
+   MOUSE PREVIEW
+========================================================= */
+
+function handleMouseMove(event) {
+
+    if (!pageData) {
+        return;
+    }
+
+    const rect =
+        pageData.canvas.getBoundingClientRect();
+
+
+    const x =
+        event.clientX - rect.left;
+
+    const y =
+        event.clientY - rect.top;
+
+
+    pageData.crosshair.style.left =
+        x + "px";
+
+    pageData.crosshair.style.top =
+        y + "px";
+
+    pageData.crosshair.style.display =
+        "block";
+
+}
+
+
+/* =========================================================
+   CLICK
+========================================================= */
+
+function handleCanvasClick(event) {
+
+    if (!pageData) {
+        return;
+    }
+
+    const rect =
+        pageData.canvas.getBoundingClientRect();
+
+
+    /*
+     * Browser/display coordinate.
+     */
+
+    const displayX =
+        event.clientX - rect.left;
+
+    const displayY =
+        event.clientY - rect.top;
+
+
+    /*
+     * Convert displayed pixels to PDF points.
+     */
+
+    const scaleX =
+        pageData.widthPt /
+        rect.width;
+
+    const scaleY =
+        pageData.heightPt /
+        rect.height;
+
+
+    const x =
+        displayX * scaleX;
+
+
+    /*
+     * PDF uses bottom-left origin.
+     */
+
+    const y =
+        pageData.heightPt -
+        (displayY * scaleY);
+
+
+    /*
+     * Conversion.
+     */
+
+    const mmX =
+        x * 25.4 / 72;
+
+    const mmY =
+        y * 25.4 / 72;
+
+    const inchX =
+        x / 72;
+
+    const inchY =
+        y / 72;
+
+
+    lastCoordinates = {
+
+        x,
+        y,
+
+        displayX,
+        displayY,
+
+        mmX,
+        mmY,
+
+        inchX,
+        inchY,
+
+        page: currentPage
+
+    };
+
+
+    /* Show crosshair */
+
+    pageData.crosshair.style.left =
+        displayX + "px";
+
+    pageData.crosshair.style.top =
+        displayY + "px";
+
+    pageData.crosshair.style.display =
+        "block";
+
+
+    /* Update UI */
+
+    coordXY.textContent =
+        `X: ${x.toFixed(2)} pt`;
+
+    coordY.textContent =
+        `Y: ${y.toFixed(2)} pt`;
+
+    coordPt.textContent =
+        "PDF coordinate — origin: bottom-left";
+
+
+    xMM.textContent =
+        `${mmX.toFixed(2)} mm`;
+
+    yMM.textContent =
+        `${mmY.toFixed(2)} mm`;
+
+
+    xInch.textContent =
+        `${inchX.toFixed(4)} in`;
+
+    yInch.textContent =
+        `${inchY.toFixed(4)} in`;
+
+
+    /*
+     * JavaScript snippet.
+     *
+     * Designed for pdf-lib.
+     */
+
+    jsCode.textContent =
+
+`const x = ${x.toFixed(2)};
+const y = ${y.toFixed(2)};
+
+page.drawText("YOUR TEXT", {
+    x: x,
+    y: y,
+    size: 12
+});`;
+
+
+    copyBtn.disabled =
+        false;
+
+}
+
+
+/* =========================================================
+   CLEAR COORDINATES
+========================================================= */
+
+function clearCoordinates() {
+
+    lastCoordinates = null;
+
+    coordXY.textContent =
+        "X: —";
+
+    coordY.textContent =
+        "Y: —";
+
+    coordPt.textContent =
+        "PDF points";
+
+    xMM.textContent =
+        "—";
+
+    yMM.textContent =
+        "—";
+
+    xInch.textContent =
+        "—";
+
+    yInch.textContent =
+        "—";
+
+    jsCode.textContent =
+`// Click anywhere on the PDF
+// to generate JavaScript coordinates`;
+
+    copyBtn.disabled =
+        true;
+
+}
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+prevPage.addEventListener(
+    "click",
+    async function() {
+
+        if (!pdfDoc || currentPage <= 1) {
+            return;
+        }
+
+        currentPage--;
+
+        await renderPage();
+
+    }
+);
+
+
+nextPage.addEventListener(
+    "click",
+    async function() {
+
+        if (
+            !pdfDoc ||
+            currentPage >= totalPages
+        ) {
+            return;
+        }
+
+        currentPage++;
+
+        await renderPage();
+
+    }
+);
+
+
+/* =========================================================
+   ZOOM
+========================================================= */
+
+zoomIn.addEventListener(
+    "click",
+    async function() {
+
+        if (!pdfDoc) {
+            return;
+        }
+
+        zoom =
+            Math.min(
+                zoom + 0.25,
+                4
+            );
+
+        await renderPage();
+
+    }
+);
+
+
+zoomOut.addEventListener(
+    "click",
+    async function() {
+
+        if (!pdfDoc) {
+            return;
+        }
+
+        zoom =
+            Math.max(
+                zoom - 0.25,
+                0.25
+            );
+
+        await renderPage();
+
+    }
+);
+
+
+resetZoom.addEventListener(
+    "click",
+    async function() {
+
+        if (!pdfDoc) {
+            return;
+        }
+
+        zoom = 1;
+
+        await renderPage();
+
+    }
+);
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+copyBtn.addEventListener(
+    "click",
+    async function() {
+
+        if (!lastCoordinates) {
+            return;
+        }
+
+        try {
+
+            await navigator.clipboard.writeText(
+                jsCode.textContent
+            );
+
+            const original =
+                copyBtn.textContent;
+
+            copyBtn.textContent =
+                "Copied!";
+
+            setTimeout(() => {
+
+                copyBtn.textContent =
+                    original;
+
+            }, 1200);
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Could not copy automatically. " +
+                "Please copy the code manually."
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
