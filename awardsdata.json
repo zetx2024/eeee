@@ -1,5 +1,105 @@
 {
   "students": [
+        {
+      "name": "Arisha Ahsan",
+      "institution": "S.F.X. Greenherald International School",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "gold",
+      "image": "https://yrjournal.org/awardimg/srp26/arisha.jpg",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=pBMAhU3lVbrNiqcU&t=590",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/gold/"
+    },
+    {
+      "name": "Inaya Hassan",
+      "institution": "Sir John Wilson School",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "gold",
+      "image": "https://yrjournal.org/awardimg/srp26/inaya.jpeg",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=qDbelpjUkoiEZSGT&t=2643",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/gold/2"
+    },
+    {
+      "name": "Sheikh Faiyad Hassan",
+      "institution": "Sir John Wilson School",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "gold",
+      "image": "https://yrjournal.org/awardimg/srp26/faiyad.jpg",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=qDbelpjUkoiEZSGT&t=2643",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/gold/2"
+    },
+    {
+      "name": "Zayan Rahman",
+      "institution": "Sir John Wilson School",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "gold",
+      "image": "https://yrjournal.org/awardimg/srp26/zayan.jpeg",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=qDbelpjUkoiEZSGT&t=2643",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/gold/2"
+    },
+     {
+      "name": "Ayman Rahman",
+      "institution": "S.F.X. Greenherald International School",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "silver",
+      "image": "https://yrjournal.org/awardimg/srp26/ayman.jpg",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=OBNaoUhZi8WfmZAF&t=1883",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/silver/"
+    },
+    {
+      "name": "Junaina Ariba Tiba",
+      "institution": "Legends International School",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "silver",
+      "image": "https://yrjournal.org/awardimg/srp26/tiba.jpg",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=5htH-D18T0IPW44I&t=6958",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/silver/2"
+    },
+    {
+      "name": "Oishika Sen",
+      "institution": "Govt. City College, Chattogram.",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "silver",
+      "image": "https://yrjournal.org/awardimg/srp26/sen.jpg",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=5htH-D18T0IPW44I&t=6958",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/silver/2"
+    },
+    {
+      "name": "Zareen Suprova",
+      "institution": "Ideal School and College",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "silver",
+      "image": "https://yrjournal.org/awardimg/srp26/zareen.jpeg",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=5htH-D18T0IPW44I&t=6958",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/silver/2"
+    },
+    {
+      "name": "Nabonita Chowdhury",
+      "institution": "A.G. Church School",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/awardimg/srp26/nabonita.jpeg",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=t2vAELxcXziFwX5h&t=3960",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/bronze/"
+    },
+    {
+      "name": "Nafia Nihal",
+      "institution": "Rajuk Uttara Model College",
+      "year": "2026",
+      "program": "Summer 2026",
+      "medal": "bronze",
+      "image": "https://yrjournal.org/awardimg/srp26/nihal.JPG",
+      "presentationLink": "https://www.youtube.com/live/H4FnviMmXlc?si=zmuV6WYZNrMlgE0S&t=4476",
+      "profileLink": "https://yrjournal.org/awardissue/srp26/bronze/2"
+    },
     {
       "name": "Rojamin Rahman",
       "institution": "Dhaka City College",
